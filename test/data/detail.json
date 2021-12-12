@@ -1,0 +1,41 @@
+{
+  "ok": true,
+  "license": "CC BY 4.0 -  https://creativecommons.tankerkoenig.de",
+  "data": "MTS-K",
+  "status": "ok",
+  "station": {
+    "id": "24a381e3-0d72-416d-bfd8-b2f65f6e5802",
+    "name": "Esso Tankstelle",
+    "brand": "ESSO",
+    "street": "HAUPTSTR. 7",
+    "houseNumber": " ",
+    "postCode": 84152,
+    "place": "MENGKOFEN",
+    "wholeDay": false,
+    "isOpen": false,
+    "e5": 1.379,
+    "e10": 1.359,
+    "diesel": 1.169,
+    "lat": 48.72210601,
+    "lng": 12.44438439,
+    "state": null,
+    "overrides": ["13.04.2017, 15:00:00 - 13.11.2017, 15:00:00: geschlossen"],
+    "openingTimes": [
+      {
+        "text": "Mo-Fr",
+        "start": "06:00:00",
+        "end": "22:30:00"
+      },
+      {
+        "text": "Samstag",
+        "start": "07:00:00",
+        "end": "22:00:00"
+      },
+      {
+        "text": "Sonntag",
+        "start": "08:00:00",
+        "end": "22:00:00"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "license": "CC BY 4.0 -  https://creativecommons.tankerkoenig.de",
+  "data": "MTS-K",
+  "status": "ok",
+  "stations": [
+    {
+      "id": "474e5046-deaf-4f9b-9a32-9797b778f047",
+      "name": "TotalEnergies Berlin",
+      "brand": "TotalEnergies",
+      "street": "Margarete-Sommer-Str.",
+      "place": "Berlin",
+      "lat": 52.530831,
+      "lng": 13.440946,
+      "dist": 0,
+      "price": 1.649,
+      "isOpen": true,
+      "houseNumber": "2",
+      "postCode": 10407
+    }
+  ]
+}
