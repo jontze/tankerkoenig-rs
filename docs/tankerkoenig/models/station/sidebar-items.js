@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["AreaFuelResponse",""],["AreaNearResponse",""],["AreaStationFuel",""],["DetailStation",""],["DetailsResponse",""],["NearStation",""],["OpeningTimes",""]]});
