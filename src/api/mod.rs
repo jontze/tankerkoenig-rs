@@ -7,7 +7,7 @@ use station::StationApi;
 
 /// Settings struct that contains the api key the current package version and the package name.
 /// The API key will be used as a query parameter in the requests and the package name and version
-/// will be used by default as useragent if no other user agent is provided
+/// will be used by default as useragent if no other useragent is provided.
 #[derive(Debug, Clone)]
 pub struct Settings {
     api_key: String,
@@ -16,8 +16,8 @@ pub struct Settings {
 }
 
 /// The main struct of the crate giving access to the station and price api of tankerkoenig.
-/// Crate a new instance of the struct with your api key as parameter and optional your custom
-/// user agent. If you want to submit requests with a custom user-agent you can pass this as
+/// Create a new instance of the struct with your api key as parameter and optional your custom
+/// useragent. If you want to submit requests with a custom useragent you can pass this as
 /// second parameter.
 ///
 /// ## Example
@@ -39,7 +39,7 @@ pub struct Tankerkoenig {
 
 impl<'a> Tankerkoenig {
     /// Creates a new instance of the Tankerkoenig struct by passing your api key as first
-    /// function parameter. Optional you can provide a custom user agent for the requests,
+    /// function parameter. Optional you can provide a custom useragent for the requests,
     /// otherwise just pass `None` as second parameter.
     ///
     /// ## Example

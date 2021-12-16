@@ -1,12 +1,12 @@
 # tankerkoenig-rs
 
-A API wrapper for the [tankerkoenig-api](https://creativecommons.tankerkoenig.de/) written in rust.
+API wrapper for the [tankerkoenig-api](https://creativecommons.tankerkoenig.de/) written in rust.
 
-Comes with ready deserialized structs.
+Gives you ready deserialized structs and a easy to use and strictly typed api.
 
 ## Installation
 
-This crate is currently not release as it is still unter heavy development. However, if you still want to use it, you can install it by adding this to your `Cargo.toml`:
+This crate is currently not released as it is still unter heavy development. However, if you still want to use it, you can install it by adding this to your `Cargo.toml`:
 
 ```toml
 
