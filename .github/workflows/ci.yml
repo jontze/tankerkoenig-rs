@@ -68,3 +68,26 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
+  upload_docs_ghp:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [build_test, test, format, clippy]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build docs
+        uses: actions-rs/cargo@v1
+        with:
+          command: doc
+          args: --no-deps
+      - name: Remove possible old documentation
+        run: rm -rf ./docs
+      - name: Create index html handling subdirectory
+        run: echo "<meta http-equiv=\"refresh\" content=\"0; url=tankerkoenig\">" > target/doc/index.html
+      - name: Move doc files from target do pages directory
+        run: cp -r target/doc ./docs
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: "--force"
+          file_pattern: ./docs
+          branch: gh-pages
+          commit_message: Automatic deploy to github pages
