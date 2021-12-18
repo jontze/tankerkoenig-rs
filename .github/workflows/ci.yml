@@ -85,9 +85,8 @@ jobs:
         run: echo "<meta http-equiv=\"refresh\" content=\"0; url=tankerkoenig\">" > target/doc/index.html
       - name: Move doc files from target do pages directory
         run: cp -r target/doc ./docs
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
-          push_options: "--force"
-          file_pattern: ./docs
           branch: gh-pages
-          commit_message: Automatic deploy to github pages
+          folder: docs
