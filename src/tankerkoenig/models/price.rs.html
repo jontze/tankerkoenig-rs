@@ -196,10 +196,10 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PriceResponse</span> {
-    <span class="ident">ok</span>: <span class="ident">bool</span>,
-    <span class="ident">license</span>: <span class="ident">String</span>,
-    <span class="ident">data</span>: <span class="ident">String</span>,
-    <span class="ident">prices</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">StationPrices</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">ok</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">license</span>: <span class="ident">String</span>,
+    <span class="kw">pub</span> <span class="ident">data</span>: <span class="ident">String</span>,
+    <span class="kw">pub</span> <span class="ident">prices</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">StationPrices</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>

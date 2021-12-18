@@ -250,11 +250,11 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DetailsResponse</span> {
-    <span class="ident">ok</span>: <span class="ident">bool</span>,
-    <span class="ident">license</span>: <span class="ident">String</span>,
-    <span class="ident">data</span>: <span class="ident">String</span>,
-    <span class="ident">status</span>: <span class="ident">String</span>,
-    <span class="ident">station</span>: <span class="ident">DetailStation</span>,
+    <span class="kw">pub</span> <span class="ident">ok</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">license</span>: <span class="ident">String</span>,
+    <span class="kw">pub</span> <span class="ident">data</span>: <span class="ident">String</span>,
+    <span class="kw">pub</span> <span class="ident">status</span>: <span class="ident">String</span>,
+    <span class="kw">pub</span> <span class="ident">station</span>: <span class="ident">DetailStation</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
