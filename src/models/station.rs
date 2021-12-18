@@ -54,11 +54,11 @@ pub struct AreaStationFuel {
 
 #[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
 pub struct DetailsResponse {
-    ok: bool,
-    license: String,
-    data: String,
-    status: String,
-    station: DetailStation,
+    pub ok: bool,
+    pub license: String,
+    pub data: String,
+    pub status: String,
+    pub station: DetailStation,
 }
 
 #[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]

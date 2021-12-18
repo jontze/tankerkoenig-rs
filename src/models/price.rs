@@ -3,10 +3,10 @@ use std::collections::HashMap;
 
 #[derive(Debug, Deserialize, Serialize, PartialEq)]
 pub struct PriceResponse {
-    ok: bool,
-    license: String,
-    data: String,
-    prices: HashMap<String, StationPrices>,
+    pub ok: bool,
+    pub license: String,
+    pub data: String,
+    pub prices: HashMap<String, StationPrices>,
 }
 
 #[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
