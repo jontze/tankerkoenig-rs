@@ -12,7 +12,7 @@ keywords = ["api-wrapper", "tankerkoenig", "api"]
 publish = false
 
 [dependencies]
-strum = "0.23"
+strum = "0.24"
 strum_macros = "0.23"
 reqwest = {version = "0.11.7", features = ["json"]}
 thiserror = "1.0.30"
