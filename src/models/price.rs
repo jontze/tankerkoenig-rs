@@ -1,21 +1,38 @@
+//! This module contains rust structs that describe the response of the tankerkoenig
+//! prices API.
+//!
+//! The json responses are parsed with serde to strongly typed rust structs.
+
 use serde::{Deserialize, Deserializer};
 use std::collections::HashMap;
 
+/// Response of the tankerkoenig api mapped to a rust struct with serde.
+/// The struct holds information about fuel prices for a collection of stations.
 #[derive(Debug, Deserialize, Serialize, PartialEq)]
 pub struct PriceResponse {
+    /// Request status
     pub ok: bool,
+    /// Data licence
     pub license: String,
+    /// Data licence
     pub data: String,
+    /// Fuel prices of requested stations
     pub prices: HashMap<String, StationPrices>,
 }
 
+/// Fuel prices of a station. If one field is `Noone` the station doesn't offer the
+/// fuel or it is currently not possibleto fetch the price.
 #[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
 pub struct StationPrices {
+    /// Station open or closed
     pub status: String,
+    /// Price for E5
     #[serde(deserialize_with = "de_from_bool_or_number", default = "default_fuel")]
     pub e5: Option<f64>,
+    /// Price for E10
     #[serde(deserialize_with = "de_from_bool_or_number", default = "default_fuel")]
     pub e10: Option<f64>,
+    /// Price for diesel
     #[serde(deserialize_with = "de_from_bool_or_number", default = "default_fuel")]
     pub diesel: Option<f64>,
 }

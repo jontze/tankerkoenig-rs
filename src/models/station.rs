@@ -1,92 +1,171 @@
+//! This module contains rust structs that describe the response
+//! of the tankerkoenig stations API.
+//!
+//! The json responses are parsed with serde to strongly typed
+//! rust structs.
+
+/// Response of the tankerkoenig API for a request of fuel
+/// stations in a certain area
 #[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
 pub struct AreaNearResponse {
+    /// Request status
     pub ok: bool,
+    /// Data licence
     pub license: String,
+    /// Data source
     pub data: String,
+    /// Request status
     pub status: String,
+    /// Vector of fuel stations in the area
     pub stations: Vec<NearStation>,
 }
 
+/// Information of a fuel station in the area returned by the
+/// [AreaNearResponse].
 #[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
 #[serde(rename_all = "camelCase")]
 pub struct NearStation {
+    /// Station id
     pub id: String,
+    /// Name of the station
     pub name: String,
+    /// Brand of the station (e.g. JET)
     pub brand: Option<String>,
+    /// Street where the station is located
     pub street: String,
-    pub place: String,
-    pub lat: f64,
-    pub lng: f64,
-    pub dist: f64,
-    pub diesel: Option<f64>,
-    pub e5: Option<f64>,
-    pub e10: Option<f64>,
-    pub is_open: bool,
+    /// Street number
     pub house_number: Option<String>,
+    /// Local post code
     pub post_code: i64,
+    /// Area of the station
+    pub place: String,
+    /// Latitude (geolocation)
+    pub lat: f64,
+    /// Longitude (geolocation)
+    pub lng: f64,
+    /// Distance from search point
+    pub dist: f64,
+    /// Diesel price
+    pub diesel: Option<f64>,
+    /// E5 price
+    pub e5: Option<f64>,
+    /// E10 price
+    pub e10: Option<f64>,
+    /// Open or Closed
+    pub is_open: bool,
 }
 
+/// Response of the tankerkoenig API for a request for fuel in a
+/// certain area
 #[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
 pub struct AreaFuelResponse {
+    /// Request status
     pub ok: bool,
+    /// Data licence
     pub license: String,
+    /// Data source
     pub data: String,
+    /// Request status
     pub status: String,
+    /// List of stations in the area with the requested fuel
     pub stations: Vec<AreaStationFuel>,
 }
 
+/// Information about the fuel of a station in the area, returned
+/// by the [AreaFuelResponse]
 #[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
 #[serde(rename_all = "camelCase")]
 pub struct AreaStationFuel {
+    /// Station id
     pub id: String,
+    /// Station name
     pub name: String,
+    /// Brand of the station (e.g. JET)
     pub brand: Option<String>,
+    /// Street where the station is located
     pub street: String,
-    pub place: String,
-    pub lat: f64,
-    pub lng: f64,
-    pub dist: f64,
-    pub price: Option<f64>,
-    pub is_open: bool,
+    /// Street number
     pub house_number: Option<String>,
+    /// Local post code
     pub post_code: i64,
+    /// Area of the station
+    pub place: String,
+    /// Latitude (geolocation)
+    pub lat: f64,
+    /// Longitude (geolocation)
+    pub lng: f64,
+    /// Distance of the station
+    pub dist: f64,
+    /// Price of the requested fuel
+    pub price: Option<f64>,
+    /// Open or closed
+    pub is_open: bool,
 }
 
+/// Response of the tankerkoenig API for a request of detailed
+/// information for a specific fuel station
 #[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
 pub struct DetailsResponse {
+    /// Request status
     pub ok: bool,
+    /// Data licence
     pub license: String,
+    /// Data source
     pub data: String,
+    /// Request status
     pub status: String,
+    /// Detailed fuel station information
     pub station: DetailStation,
 }
 
+/// Detailed information of a fuel station, returned by the [DetailsResponse]
 #[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
 #[serde(rename_all = "camelCase")]
 pub struct DetailStation {
+    /// Station id
     pub id: String,
+    /// Name of the station
     pub name: String,
+    /// Brand of the station (e.g. JET)
     pub brand: String,
+    /// Street where the station is located
     pub street: String,
+    /// Street number
     pub house_number: Option<String>,
+    /// Local post code
     pub post_code: i64,
+    /// Area of the station
     pub place: String,
+    /// Open 24 hours
     pub whole_day: bool,
+    ///Currently open or closed
     pub is_open: bool,
-    pub e5: f64,
-    pub e10: f64,
-    pub diesel: f64,
+    /// Diesel price
+    pub diesel: Option<f64>,
+    /// E5 price
+    pub e5: Option<f64>,
+    /// E10 price
+    pub e10: Option<f64>,
+    /// Latitude (geolocation)
     pub lat: f64,
+    /// Longitude (geolocation)
     pub lng: f64,
+    /// State of the station
     pub state: Option<String>,
+    /// Additional information
     pub overrides: Vec<String>,
+    /// Opening times of the station
     pub opening_times: Vec<OpeningTimes>,
 }
 
+/// Opening times for a fuel station
 #[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
 pub struct OpeningTimes {
+    /// Information about the scope of start end end
     pub text: String,
+    /// Opening time
     pub start: String,
+    /// Closing time
     pub end: String,
 }
 
@@ -179,9 +258,9 @@ mod test {
         assert_eq!(station_detail_response.station.place, "MENGKOFEN");
         assert_eq!(station_detail_response.station.whole_day, false);
         assert_eq!(station_detail_response.station.is_open, false);
-        assert_eq!(station_detail_response.station.e5, 1.379);
-        assert_eq!(station_detail_response.station.e10, 1.359);
-        assert_eq!(station_detail_response.station.diesel, 1.169);
+        assert_eq!(station_detail_response.station.e5, Some(1.379));
+        assert_eq!(station_detail_response.station.e10, Some(1.359));
+        assert_eq!(station_detail_response.station.diesel, Some(1.169));
         assert_eq!(station_detail_response.station.lat, 48.72210601);
         assert_eq!(station_detail_response.station.lng, 12.44438439);
         assert_eq!(station_detail_response.station.state, None);
