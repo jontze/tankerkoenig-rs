@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["StationApi","Struct that holds the current reqwest client of the library and gives access to the station api of the tankerkoenig API."]]});

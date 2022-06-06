@@ -20,7 +20,125 @@
 <span id="15">15</span>
 <span id="16">16</span>
 <span id="17">17</span>
-</pre><pre class="rust"><code><span class="attribute">#[<span class="ident">macro_use</span>]</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+</pre><pre class="rust"><code><span class="doccomment">//! # tankerkoenig-rs</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The [Tankerkoenig][tankerkoenig] crate provides an easy to use wrapper over the</span>
+<span class="doccomment">//! [tankerkoenig api][tankerkoenig_api].</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! * Easy to use</span>
+<span class="doccomment">//! * Async api calls with [reqwest][reqwest]</span>
+<span class="doccomment">//! * Ready deserialized structs of the tankerkoenig responses</span>
+<span class="doccomment">//! * Manages authentication for you, just pass your api token once</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## Requirements</span>
+<span class="doccomment">//! * Your own [tankerkoenig api key][tankerkoenig_api]</span>
+<span class="doccomment">//! * Async runtime configured e.g. [tokio][tokio]</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## Getting started</span>
+<span class="doccomment">//! Install the latest version of this crate by adding the following line to your `Cargo.toml`</span>
+<span class="doccomment">//! ```toml</span>
+<span class="doccomment">//! [dependencies]</span>
+<span class="doccomment">//! tankerkoenig = { git = &quot;https://github.com/jontze/tankerkoenig-rs&quot; }</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//! Import the crate and create a new instance of the [Tankerkoenig][tankerkoenig] struct.</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//! use tankerkoenig::Tankerkoenig;</span>
+<span class="doccomment">//! use tankerkoenig::models;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! async fn run() -&gt; Result&lt;models::station::DetailsResponse, tankerkoenig::Error&gt; {</span>
+<span class="doccomment">//!   let tanker = Tankerkoenig::new(&quot;your-api-key&quot;);</span>
+<span class="doccomment">//!   let details = tanker.station.fetch_details(&quot;id-of-the-fuel-station&quot;).await?;</span>
+<span class="doccomment">//!   Ok(details)</span>
+<span class="doccomment">//! }</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## Examples</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## Optional Features</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## Troubleshooting</span>
+<span class="doccomment">//! If you get a ResponseParsingError during usage of the crate this is very likely</span>
+<span class="doccomment">//! due to an invalid input where the tankerkoenig api will throw an error or</span>
+<span class="doccomment">//! due to some unexpected values that were returned by the api. E.g. sometimes the api</span>
+<span class="doccomment">//! will return `false` instead of a number for certain fields or other fields were missing.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! In this case please check if your input is valid and if so create a bug report on the</span>
+<span class="doccomment">//! crate [repository][tankerkoenig_rs_repo] and provide some information about your input.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! [tankerkoenig]: ./api/struct.Tankerkoenig.html</span>
+<span class="doccomment">//! [tankerkoenig_rs_repo]: https://github.com/jontze/tankerkoenig-rs</span>
+<span class="doccomment">//! [tankerkoenig_api]: https://creativecommons.tankerkoenig.de/</span>
+<span class="doccomment">//! [reqwest]: https://crates.io/crates/reqwest</span>
+<span class="doccomment">//! [tokio]: https://crates.io/crates/tokio</span>
+
+<span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
+<span class="attribute">#![<span class="ident">deny</span>(<span class="ident">rustdoc::bare_urls</span>)]</span>
+<span class="attribute">#![<span class="ident">deny</span>(<span class="ident">rustdoc::invalid_codeblock_attributes</span>)]</span>
+<span class="attribute">#![<span class="ident">deny</span>(<span class="ident">rustdoc::broken_intra_doc_links</span>)]</span>
+
+<span class="attribute">#[<span class="ident">macro_use</span>]</span>
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">serde</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">serde_json</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">strum</span>;
