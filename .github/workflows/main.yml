@@ -1,0 +1,31 @@
+name: Main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test
+    uses: ./.github/workflows/test.yml
+  upload_docs_ghp:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build docs
+        uses: actions-rs/cargo@v1
+        with:
+          command: doc
+          args: --no-deps
+      - name: Remove possible old documentation
+        run: rm -rf ./docs
+      - name: Create index html handling subdirectory
+        run: echo "<meta http-equiv=\"refresh\" content=\"0; url=tankerkoenig\">" > target/doc/index.html
+      - name: Move doc files from target to pages directory
+        run: cp -r target/doc ./docs
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs
