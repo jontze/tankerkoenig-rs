@@ -11,7 +11,7 @@ use std::sync::Arc;
 /// the tankerkoenig API.
 #[derive(Debug, Clone)]
 pub struct StationApi {
-    client: Arc<Client>,
+    client: Client,
     options: Arc<Settings>,
 }
 
@@ -25,7 +25,7 @@ impl StationApi {
     ///
     /// However, if you you still want to do this, you need to pass
     /// an reqwest client and the Settings struct as parameter.
-    pub fn new(client: Arc<Client>, options: Arc<Settings>) -> Self {
+    pub fn new(client: Client, options: Arc<Settings>) -> Self {
         Self { client, options }
     }
 

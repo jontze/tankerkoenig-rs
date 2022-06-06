@@ -63,9 +63,8 @@ impl<'a> Tankerkoenig {
             package_name: env!("CARGO_PKG_NAME"),
             api_key: String::from(api_key),
         });
-        let client = std::sync::Arc::new(
-            utils::baseline::construct_client(None, &settings).expect("Client to be constructed"),
-        );
+        let client =
+            utils::baseline::construct_client(None, &settings).expect("Client to be constructed");
         Self {
             station: StationApi::new(client.clone(), settings.clone()),
             price: PriceApi::new(client, settings),
@@ -94,13 +93,11 @@ impl<'a> Tankerkoenig {
             package_name: env!("CARGO_PKG_NAME"),
             api_key: String::from(api_key),
         });
-        let client = std::sync::Arc::new(
-            utils::baseline::construct_client(Some(user_agent), &settings)
-                .expect("Client to be constructed"),
-        );
+        let client = utils::baseline::construct_client(Some(user_agent), &settings)
+            .expect("Client to be constructed");
         Self {
             station: StationApi::new(client.clone(), settings.clone()),
-            price: PriceApi::new(client.clone(), settings.clone()),
+            price: PriceApi::new(client, settings),
         }
     }
 }

@@ -23,7 +23,7 @@ use std::sync::Arc;
 /// ```
 #[derive(Debug, Clone)]
 pub struct PriceApi {
-    client: Arc<Client>,
+    client: Client,
     settings: Arc<Settings>,
 }
 
@@ -37,7 +37,7 @@ impl PriceApi {
     ///
     /// However, if you you still want to do this, you need to pass
     /// an reqwest client and the Settings struct as parameter.
-    pub fn new(client: Arc<Client>, settings: Arc<Settings>) -> Self {
+    pub fn new(client: Client, settings: Arc<Settings>) -> Self {
         Self { client, settings }
     }
 
