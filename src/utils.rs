@@ -36,11 +36,11 @@ pub mod baseline {
 }
 
 pub mod price {
-    pub fn format_ids_string(ids: Vec<String>) -> String {
+    pub fn format_ids_string(ids: Vec<&str>) -> String {
         let mut ids_string = String::from("");
         for (index, id) in ids.into_iter().enumerate() {
             ids_string = if index == 0 {
-                id
+                id.to_string()
             } else {
                 format!("{},{}", ids_string, id)
             };
@@ -82,7 +82,7 @@ mod price_test {
 
     #[test]
     fn should_create_string_of_ids() {
-        let ids = vec![String::from("123"), String::from("456")];
+        let ids = vec!["123", "456"];
         let ids_string = format_ids_string(ids);
         assert_eq!(ids_string, "123,456");
     }

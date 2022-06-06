@@ -56,7 +56,7 @@ impl PriceApi {
     /// ```
     pub async fn fetch(
         &self,
-        ids: Vec<String>,
+        ids: Vec<&str>,
     ) -> Result<models::price::PriceResponse, error::TankerkoenigError> {
         let mut url = construct_base_url(&self.settings.api_key, Some("json/prices.php"));
         url.query_pairs_mut()
