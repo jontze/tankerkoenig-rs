@@ -6,7 +6,7 @@
 
 /// Response of the tankerkoenig API for a request of fuel
 /// stations in a certain area
-#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
+#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
 pub struct AreaNearResponse {
     /// Request status
     pub ok: bool,
@@ -22,7 +22,7 @@ pub struct AreaNearResponse {
 
 /// Information of a fuel station in the area returned by the
 /// [AreaNearResponse].
-#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
+#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct NearStation {
     /// Station id
@@ -57,7 +57,7 @@ pub struct NearStation {
 
 /// Response of the tankerkoenig API for a request for fuel in a
 /// certain area
-#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
+#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
 pub struct AreaFuelResponse {
     /// Request status
     pub ok: bool,
@@ -73,7 +73,7 @@ pub struct AreaFuelResponse {
 
 /// Information about the fuel of a station in the area, returned
 /// by the [AreaFuelResponse]
-#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
+#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct AreaStationFuel {
     /// Station id
@@ -104,7 +104,7 @@ pub struct AreaStationFuel {
 
 /// Response of the tankerkoenig API for a request of detailed
 /// information for a specific fuel station
-#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
+#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
 pub struct DetailsResponse {
     /// Request status
     pub ok: bool,
@@ -119,7 +119,7 @@ pub struct DetailsResponse {
 }
 
 /// Detailed information of a fuel station, returned by the [DetailsResponse]
-#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
+#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct DetailStation {
     /// Station id
@@ -159,7 +159,7 @@ pub struct DetailStation {
 }
 
 /// Opening times for a fuel station
-#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
+#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone, Hash, Eq, Ord)]
 pub struct OpeningTimes {
     /// Information about the scope of start end end
     pub text: String,

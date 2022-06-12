@@ -9,7 +9,7 @@ pub use price::PriceResponse;
 pub use station::{AreaFuelResponse, AreaNearResponse, DetailsResponse};
 
 /// Enum of all supported fuel types
-#[derive(EnumString, Display, PartialEq, Debug)]
+#[derive(EnumString, Display, PartialEq, Debug, Eq, Clone, PartialOrd, Ord)]
 pub enum Fuel {
     /// Super95 or E5 and serialized to `e5`
     #[strum(serialize = "e5")]
@@ -23,7 +23,7 @@ pub enum Fuel {
 }
 
 /// Enum of supported sorting logic
-#[derive(EnumString, Display, PartialEq, Debug)]
+#[derive(EnumString, Display, PartialEq, Debug, Eq, Clone, PartialOrd, Ord)]
 pub enum Sort {
     /// Sort by price from lowest to highest price and
     /// will serialize to `price`

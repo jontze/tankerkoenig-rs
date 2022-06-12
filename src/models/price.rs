@@ -8,7 +8,7 @@ use std::collections::HashMap;
 
 /// Response of the tankerkoenig api mapped to a rust struct with serde.
 /// The struct holds information about fuel prices for a collection of stations.
-#[derive(Debug, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
 pub struct PriceResponse {
     /// Request status
     pub ok: bool,
@@ -22,7 +22,7 @@ pub struct PriceResponse {
 
 /// Fuel prices of a station. If one field is `Noone` the station doesn't offer the
 /// fuel or it is currently not possibleto fetch the price.
-#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd)]
+#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
 pub struct StationPrices {
     /// Station open or closed
     pub status: String,
