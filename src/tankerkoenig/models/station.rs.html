@@ -286,7 +286,7 @@
 
 <span class="doccomment">/// Response of the tankerkoenig API for a request of fuel</span>
 <span class="doccomment">/// stations in a certain area</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AreaNearResponse</span> {
     <span class="doccomment">/// Request status</span>
     <span class="kw">pub</span> <span class="ident">ok</span>: <span class="ident">bool</span>,
@@ -302,7 +302,7 @@
 
 <span class="doccomment">/// Information of a fuel station in the area returned by the</span>
 <span class="doccomment">/// [AreaNearResponse].</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
 <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;camelCase&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NearStation</span> {
     <span class="doccomment">/// Station id</span>
@@ -337,7 +337,7 @@
 
 <span class="doccomment">/// Response of the tankerkoenig API for a request for fuel in a</span>
 <span class="doccomment">/// certain area</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AreaFuelResponse</span> {
     <span class="doccomment">/// Request status</span>
     <span class="kw">pub</span> <span class="ident">ok</span>: <span class="ident">bool</span>,
@@ -353,7 +353,7 @@
 
 <span class="doccomment">/// Information about the fuel of a station in the area, returned</span>
 <span class="doccomment">/// by the [AreaFuelResponse]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
 <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;camelCase&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AreaStationFuel</span> {
     <span class="doccomment">/// Station id</span>
@@ -384,7 +384,7 @@
 
 <span class="doccomment">/// Response of the tankerkoenig API for a request of detailed</span>
 <span class="doccomment">/// information for a specific fuel station</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DetailsResponse</span> {
     <span class="doccomment">/// Request status</span>
     <span class="kw">pub</span> <span class="ident">ok</span>: <span class="ident">bool</span>,
@@ -399,7 +399,7 @@
 }
 
 <span class="doccomment">/// Detailed information of a fuel station, returned by the [DetailsResponse]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
 <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;camelCase&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DetailStation</span> {
     <span class="doccomment">/// Station id</span>
@@ -439,7 +439,7 @@
 }
 
 <span class="doccomment">/// Opening times for a fuel station</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>, <span class="ident">Hash</span>, <span class="ident">Eq</span>, <span class="ident">Ord</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OpeningTimes</span> {
     <span class="doccomment">/// Information about the scope of start end end</span>
     <span class="kw">pub</span> <span class="ident">text</span>: <span class="ident">String</span>,

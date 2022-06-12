@@ -217,7 +217,7 @@
 
 <span class="doccomment">/// Response of the tankerkoenig api mapped to a rust struct with serde.</span>
 <span class="doccomment">/// The struct holds information about fuel prices for a collection of stations.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PriceResponse</span> {
     <span class="doccomment">/// Request status</span>
     <span class="kw">pub</span> <span class="ident">ok</span>: <span class="ident">bool</span>,
@@ -231,7 +231,7 @@
 
 <span class="doccomment">/// Fuel prices of a station. If one field is `Noone` the station doesn&#39;t offer the</span>
 <span class="doccomment">/// fuel or it is currently not possibleto fetch the price.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StationPrices</span> {
     <span class="doccomment">/// Station open or closed</span>
     <span class="kw">pub</span> <span class="ident">status</span>: <span class="ident">String</span>,
