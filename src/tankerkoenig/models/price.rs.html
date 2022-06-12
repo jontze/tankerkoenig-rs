@@ -207,12 +207,6 @@
 <span id="202">202</span>
 <span id="203">203</span>
 <span id="204">204</span>
-<span id="205">205</span>
-<span id="206">206</span>
-<span id="207">207</span>
-<span id="208">208</span>
-<span id="209">209</span>
-<span id="210">210</span>
 </pre><pre class="rust"><code><span class="doccomment">//! This module contains rust structs that describe the response of the tankerkoenig</span>
 <span class="doccomment">//! prices API.</span>
 <span class="doccomment">//!</span>
@@ -268,14 +262,8 @@
 {
     <span class="kw">let</span> <span class="ident">parsed_value</span> <span class="op">=</span> <span class="prelude-ty">Option</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span><span class="ident">::deserialize</span>(<span class="ident">deserializer</span>);
     <span class="kw">match</span> <span class="ident">parsed_value</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">value</span>) =&gt; {
-            <span class="macro">println!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">parsed_value</span>);
-            <span class="prelude-val">Ok</span>(<span class="ident">value</span>)
-        }
-        <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; {
-            <span class="macro">eprintln!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">err</span>);
-            <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
-        }
+        <span class="prelude-val">Ok</span>(<span class="ident">value</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">value</span>),
+        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
     }
 }
 

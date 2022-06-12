@@ -105,7 +105,7 @@
 <span class="doccomment">//! use tankerkoenig::models;</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! async fn run() -&gt; Result&lt;models::station::DetailsResponse, tankerkoenig::Error&gt; {</span>
-<span class="doccomment">//!   let tanker = Tankerkoenig::new(&quot;your-api-key&quot;);</span>
+<span class="doccomment">//!   let tanker = Tankerkoenig::new(&quot;your-api-key&quot;)?;</span>
 <span class="doccomment">//!   let details = tanker.station.fetch_details(&quot;id-of-the-fuel-station&quot;).await?;</span>
 <span class="doccomment">//!   Ok(details)</span>
 <span class="doccomment">//! }</span>
