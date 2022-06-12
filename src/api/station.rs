@@ -37,7 +37,7 @@ impl StationApi {
     /// use tankerkoenig::models;
     ///
     /// async fn request_near_stations() -> Result<models::AreaNearResponse, tankerkoenig::Error> {
-    ///    let tanker = Tankerkoenig::new("your-api-key");
+    ///    let tanker = Tankerkoenig::new("your-api-key")?;
     ///    let latitude: f64 = 52.52;
     ///    let longitude: f64 = 13.40;
     ///    let radius: f64 = 10.0;
@@ -51,7 +51,7 @@ impl StationApi {
         lng: f64,
         radius: f64,
     ) -> Result<models::station::AreaNearResponse, error::TankerkoenigError> {
-        let mut url = construct_base_url(&self.options.api_key, Some("json/list.php"));
+        let mut url = construct_base_url(&self.options.api_key, Some("json/list.php"))?;
         url.query_pairs_mut()
             .append_pair("lat", &lat.to_string())
             .append_pair("lng", &lng.to_string())
@@ -78,7 +78,7 @@ impl StationApi {
     /// use tankerkoenig::models;
     ///
     /// async fn request_fuel_near() -> Result<models::AreaFuelResponse, tankerkoenig::Error> {
-    ///    let tanker = Tankerkoenig::new("your-api-key");
+    ///    let tanker = Tankerkoenig::new("your-api-key")?;
     ///    let latitude: f64 = 52.52;
     ///    let longitude: f64 = 13.40;
     ///    let radius: f64 = 10.0;
@@ -96,7 +96,7 @@ impl StationApi {
         fuel: models::Fuel,
         sort: models::Sort,
     ) -> Result<models::station::AreaFuelResponse, error::TankerkoenigError> {
-        let mut url = construct_base_url(&self.options.api_key, Some("json/list.php"));
+        let mut url = construct_base_url(&self.options.api_key, Some("json/list.php"))?;
         url.query_pairs_mut()
             .append_pair("lat", &lat.to_string())
             .append_pair("lng", &lng.to_string())
@@ -123,7 +123,7 @@ impl StationApi {
     /// use tankerkoenig::models;
     ///
     /// async fn request_station() -> Result<models::DetailsResponse, tankerkoenig::Error> {
-    ///    let tanker = Tankerkoenig::new("your-api-key");
+    ///    let tanker = Tankerkoenig::new("your-api-key")?;
     ///    let station_details = tanker.station.fetch_details("<station_id>").await?;
     ///    Ok(station_details)
     /// }
@@ -132,7 +132,7 @@ impl StationApi {
         &self,
         id: &str,
     ) -> Result<models::station::DetailsResponse, error::TankerkoenigError> {
-        let mut url = construct_base_url(&self.options.api_key, Some("json/detail.php"));
+        let mut url = construct_base_url(&self.options.api_key, Some("json/detail.php"))?;
         url.query_pairs_mut().append_pair("id", id);
         let request = self
             .client

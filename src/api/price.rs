@@ -16,7 +16,7 @@ use std::sync::Arc;
 /// use tankerkoenig::models;
 ///
 /// async fn request_station_prices() -> Result<models::PriceResponse, tankerkoenig::Error> {
-///    let tanker = Tankerkoenig::new("your-api-key");
+///    let tanker = Tankerkoenig::new("your-api-key")?;
 ///    let prices = tanker.price.fetch(vec!["station-id-1", "station-id-1"]).await?;
 ///    Ok(prices)
 /// }
@@ -49,7 +49,7 @@ impl PriceApi {
     /// use tankerkoenig::models;
     ///
     /// async fn request_station_prices() -> Result<models::PriceResponse, tankerkoenig::Error> {
-    ///    let tanker = Tankerkoenig::new("your-api-key");
+    ///    let tanker = Tankerkoenig::new("your-api-key")?;
     ///    let prices = tanker.price.fetch(vec!["station-id-1", "station-id-1"]).await?;
     ///    Ok(prices)
     /// }
@@ -58,7 +58,7 @@ impl PriceApi {
         &self,
         ids: Vec<&str>,
     ) -> Result<models::price::PriceResponse, error::TankerkoenigError> {
-        let mut url = construct_base_url(&self.settings.api_key, Some("json/prices.php"));
+        let mut url = construct_base_url(&self.settings.api_key, Some("json/prices.php"))?;
         url.query_pairs_mut()
             .append_pair("ids", &format_ids_string(ids));
         let request = self

@@ -22,7 +22,7 @@ use tankerkoenig::Tankerkoenig;
 use tankerkoenig::models;
 
 async fn request_station_details() -> Result<models::station::DetailsResponse, tankerkoenig::Error> {
-    let tanker = Tankerkoenig::new("your-api-key", None);
+    let tanker = Tankerkoenig::new("<your-api-key>")?;
     let details = tanker.station.fetch_details("id-of-a-fuel-station").await?;
      Ok(details)
 }
