@@ -128,10 +128,11 @@ impl StationApi {
     ///    Ok(station_details)
     /// }
     /// ```
-    pub async fn fetch_details(
+    pub async fn fetch_details<S: AsRef<str>>(
         &self,
-        id: &str,
+        id: S,
     ) -> Result<models::station::DetailsResponse, error::TankerkoenigError> {
+        let id = id.as_ref();
         let mut url = construct_base_url(&self.options.api_key, Some("json/detail.php"))?;
         url.query_pairs_mut().append_pair("id", id);
         let request = self
