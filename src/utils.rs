@@ -1,5 +1,6 @@
 pub mod baseline {
     use crate::api;
+    use crate::error::TankerkoenigError;
     use reqwest::header::{HeaderMap, HeaderValue, CONTENT_TYPE};
     use reqwest::{Client, Url};
 
@@ -8,12 +9,10 @@ pub mod baseline {
     pub fn construct_client(
         user_agent: Option<&str>,
         settings: &api::Settings,
-    ) -> Result<Client, reqwest::Error> {
+    ) -> Result<Client, TankerkoenigError> {
         let mut headers = HeaderMap::new();
-        headers.insert(
-            CONTENT_TYPE,
-            HeaderValue::from_str("application/json").expect("Failed to set content type header"),
-        );
+        let content_type = HeaderValue::from_str("application/json")?;
+        headers.insert(CONTENT_TYPE, content_type);
         let agent = user_agent.map_or_else(
             || format!("{}/{}", settings.package_name, settings.package_version),
             String::from,
@@ -21,17 +20,21 @@ pub mod baseline {
         let client = Client::builder()
             .user_agent(agent)
             .default_headers(headers)
-            .build()?;
+            .build()
+            .map_err(|err| TankerkoenigError::ClientConstruction { source: err })?;
         Ok(client)
     }
 
-    pub fn construct_base_url(api_key: &str, with_path: Option<&str>) -> Url {
-        let mut url = Url::parse(BASE_URL).expect("To create url");
+    pub fn construct_base_url(
+        api_key: &str,
+        with_path: Option<&str>,
+    ) -> Result<Url, TankerkoenigError> {
+        let mut url = Url::parse(BASE_URL).map_err(|_| TankerkoenigError::UrlConstruction)?;
         url.query_pairs_mut().append_pair("apikey", api_key);
         if let Some(path) = with_path {
             url.set_path(path);
         }
-        url
+        Ok(url)
     }
 }
 
@@ -57,19 +60,19 @@ mod baseline_test {
 
     #[test]
     fn should_create_base_url_with_api_key() {
-        let base_url = construct_base_url("123", None);
+        let base_url = construct_base_url("123", None).unwrap();
         assert_eq!(base_url.query(), Some("apikey=123"));
     }
 
     #[test]
     fn should_create_base_url() {
-        let base_url = construct_base_url("123", None);
+        let base_url = construct_base_url("123", None).unwrap();
         assert_eq!(base_url.host_str(), Some("creativecommons.tankerkoenig.de"));
     }
 
     #[test]
     fn should_create_base_url_with_path() {
-        let base_url = construct_base_url("123", Some("prices.php"));
+        let base_url = construct_base_url("123", Some("prices.php")).unwrap();
         assert_eq!(base_url.host_str(), Some("creativecommons.tankerkoenig.de"));
         assert_eq!(base_url.query(), Some("apikey=123"));
         assert_eq!(base_url.path(), "/prices.php")
