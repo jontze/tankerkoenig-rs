@@ -53,12 +53,8 @@ where
 {
     let parsed_value = Option::<f64>::deserialize(deserializer);
     match parsed_value {
-        Ok(value) => {
-            Ok(value)
-        }
-        Err(_) => {            
-            Ok(None)
-        }
+        Ok(value) => Ok(value),
+        Err(_) => Ok(None),
     }
 }
 
