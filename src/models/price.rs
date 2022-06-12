@@ -54,11 +54,9 @@ where
     let parsed_value = Option::<f64>::deserialize(deserializer);
     match parsed_value {
         Ok(value) => {
-            println!("{:?}", parsed_value);
             Ok(value)
         }
-        Err(err) => {
-            eprintln!("{:?}", err);
+        Err(_) => {            
             Ok(None)
         }
     }
