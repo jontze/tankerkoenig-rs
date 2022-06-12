@@ -18,4 +18,21 @@ pub enum TankerkoenigError {
         #[source]
         source: reqwest::Error,
     },
+    /// Somehing went wrong during header construction
+    #[error("Failed to construct http header")]
+    HeaderConstruction {
+        /// Error source
+        #[from]
+        source: reqwest::header::InvalidHeaderValue,
+    },
+    /// Somthing went wrong during http client creation
+    #[error("Failed to create http client")]
+    ClientConstruction {
+        /// Error source
+        #[source]
+        source: reqwest::Error,
+    },
+    /// Failed to parse the request url
+    #[error("Failed to construct the url")]
+    UrlConstruction,
 }
