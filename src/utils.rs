@@ -39,7 +39,9 @@ pub mod baseline {
 }
 
 pub mod price {
-    pub fn format_ids_string(ids: Vec<&str>) -> String {
+    use std::fmt::Display;
+
+    pub fn format_ids_string(ids: impl IntoIterator<Item = impl AsRef<str> + Display>) -> String {
         let mut ids_string = String::from("");
         for (index, id) in ids.into_iter().enumerate() {
             ids_string = if index == 0 {

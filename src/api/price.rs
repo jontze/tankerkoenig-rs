@@ -5,6 +5,7 @@ use crate::error;
 use crate::models;
 use crate::utils::{baseline::construct_base_url, price::format_ids_string};
 use reqwest::Client;
+use std::fmt::Display;
 use std::sync::Arc;
 
 /// Struct that holds the current reqwest client of the library and gives access to the price api of
@@ -56,7 +57,7 @@ impl PriceApi {
     /// ```
     pub async fn fetch(
         &self,
-        ids: Vec<&str>,
+        ids: impl IntoIterator<Item = impl AsRef<str> + Display>,
     ) -> Result<models::price::PriceResponse, error::TankerkoenigError> {
         let mut url = construct_base_url(&self.settings.api_key, Some("json/prices.php"))?;
         url.query_pairs_mut()
