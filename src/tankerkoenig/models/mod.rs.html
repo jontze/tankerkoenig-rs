@@ -80,7 +80,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">station</span>::{<span class="ident">AreaFuelResponse</span>, <span class="ident">AreaNearResponse</span>, <span class="ident">DetailsResponse</span>};
 
 <span class="doccomment">/// Enum of all supported fuel types</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">EnumString</span>, <span class="ident">Display</span>, <span class="ident">PartialEq</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">strum::EnumString</span>, <span class="ident">strum::Display</span>, <span class="ident">PartialEq</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Fuel</span> {
     <span class="doccomment">/// Super95 or E5 and serialized to `e5`</span>
     <span class="attribute">#[<span class="ident">strum</span>(<span class="ident">serialize</span> <span class="op">=</span> <span class="string">&quot;e5&quot;</span>)]</span>
@@ -94,7 +94,7 @@
 }
 
 <span class="doccomment">/// Enum of supported sorting logic</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">EnumString</span>, <span class="ident">Display</span>, <span class="ident">PartialEq</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">strum::EnumString</span>, <span class="ident">strum::Display</span>, <span class="ident">PartialEq</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Sort</span> {
     <span class="doccomment">/// Sort by price from lowest to highest price and</span>
     <span class="doccomment">/// will serialize to `price`</span>
