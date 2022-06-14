@@ -59,11 +59,9 @@
 
 #[macro_use]
 extern crate serde;
+extern crate reqwest;
 extern crate serde_json;
 extern crate strum;
-#[macro_use]
-extern crate strum_macros;
-extern crate reqwest;
 #[macro_use]
 extern crate thiserror;
 
