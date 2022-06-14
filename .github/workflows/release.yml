@@ -10,6 +10,8 @@ jobs:
     uses: ./.github/workflows/test.yml
   cargo_publish:
     name: Publish
+    needs:
+      - release_test
     uses: ./.github/workflows/cargo_publish.yml
     with:
       tag_name: ${{ github.event.release.tag_name }}
