@@ -1,0 +1,17 @@
+name: Release
+on:
+  release:
+    types:
+      - "published"
+
+jobs:
+  release_test:
+    name: Test
+    uses: ./.github/workflows/test.yml
+  cargo_publish:
+    name: Publish
+    uses: ./.github/workflows/cargo_publish.yml
+    with:
+      tag_name: ${{ github.event.release.tag_name }}
+    secrets:
+      TOKEN: ${{ secrets.CARGO_TOKEN }}
