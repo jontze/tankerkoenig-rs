@@ -62,15 +62,16 @@ impl PriceApi {
         let mut url = construct_base_url(&self.settings.api_key, Some("json/prices.php"))?;
         url.query_pairs_mut()
             .append_pair("ids", &format_ids_string(ids));
-        let request = self
+        let res_body = self
             .client
             .get(url)
             .send()
             .await
             .map_err(|err| error::TankerkoenigError::RequestError { source: err })?
-            .json::<models::price::PriceResponse>()
+            .text()
             .await
-            .map_err(|err| error::TankerkoenigError::ResponseParsingError { source: err })?;
-        Ok(request)
+            .map_err(|err| error::TankerkoenigError::RequestError { source: err })?;
+        serde_json::from_str::<models::price::PriceResponse>(&res_body)
+            .map_err(|_| error::TankerkoenigError::ResponseParsingError { body: res_body })
     }
 }
