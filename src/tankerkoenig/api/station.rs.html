@@ -152,6 +152,9 @@
 <span id="147">147</span>
 <span id="148">148</span>
 <span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Station module that gives access to the [StationApi] struct</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::api::Settings</span>;
@@ -211,16 +214,17 @@
             .<span class="ident">append_pair</span>(<span class="string">&quot;lng&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">lng</span>.<span class="ident">to_string</span>())
             .<span class="ident">append_pair</span>(<span class="string">&quot;rad&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">radius</span>.<span class="ident">to_string</span>())
             .<span class="ident">append_pair</span>(<span class="string">&quot;type&quot;</span>, <span class="string">&quot;all&quot;</span>);
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="self">self</span>
+        <span class="kw">let</span> <span class="ident">res_body</span> <span class="op">=</span> <span class="self">self</span>
             .<span class="ident">client</span>
             .<span class="ident">get</span>(<span class="ident">url</span>)
             .<span class="ident">send</span>()
             .<span class="kw">await</span>
             .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::RequestError</span> { <span class="ident">source</span>: <span class="ident">err</span> })<span class="question-mark">?</span>
-            .<span class="ident">json</span>::<span class="op">&lt;</span><span class="ident">models::station::AreaNearResponse</span><span class="op">&gt;</span>()
+            .<span class="ident">text</span>()
             .<span class="kw">await</span>
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::ResponseParsingError</span> { <span class="ident">source</span>: <span class="ident">err</span> })<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">request</span>)
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::RequestError</span> { <span class="ident">source</span>: <span class="ident">err</span> })<span class="question-mark">?</span>;
+        <span class="ident">serde_json::from_str</span>::<span class="op">&lt;</span><span class="ident">models::station::AreaNearResponse</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">res_body</span>)
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::ResponseParsingError</span> { <span class="ident">body</span>: <span class="ident">res_body</span> })
     }
 
     <span class="doccomment">/// Fetch all stations in a radius around the given coordinates that sell a specific kind</span>
@@ -257,16 +261,17 @@
             .<span class="ident">append_pair</span>(<span class="string">&quot;rad&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">radius</span>.<span class="ident">to_string</span>())
             .<span class="ident">append_pair</span>(<span class="string">&quot;type&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">fuel</span>.<span class="ident">to_string</span>())
             .<span class="ident">append_pair</span>(<span class="string">&quot;sort&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">sort</span>.<span class="ident">to_string</span>());
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="self">self</span>
+        <span class="kw">let</span> <span class="ident">res_body</span> <span class="op">=</span> <span class="self">self</span>
             .<span class="ident">client</span>
             .<span class="ident">get</span>(<span class="ident">url</span>)
             .<span class="ident">send</span>()
             .<span class="kw">await</span>
             .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::RequestError</span> { <span class="ident">source</span>: <span class="ident">err</span> })<span class="question-mark">?</span>
-            .<span class="ident">json</span>::<span class="op">&lt;</span><span class="ident">models::station::AreaFuelResponse</span><span class="op">&gt;</span>()
+            .<span class="ident">text</span>()
             .<span class="kw">await</span>
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::ResponseParsingError</span> { <span class="ident">source</span>: <span class="ident">err</span> })<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">request</span>)
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::RequestError</span> { <span class="ident">source</span>: <span class="ident">err</span> })<span class="question-mark">?</span>;
+        <span class="ident">serde_json::from_str</span>::<span class="op">&lt;</span><span class="ident">models::station::AreaFuelResponse</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">res_body</span>)
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::ResponseParsingError</span> { <span class="ident">body</span>: <span class="ident">res_body</span> })
     }
 
     <span class="doccomment">/// Fetch informations about a certain station by id.</span>
@@ -289,16 +294,17 @@
         <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">id</span>.<span class="ident">as_ref</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">url</span> <span class="op">=</span> <span class="ident">construct_base_url</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">options</span>.<span class="ident">api_key</span>, <span class="prelude-val">Some</span>(<span class="string">&quot;json/detail.php&quot;</span>))<span class="question-mark">?</span>;
         <span class="ident">url</span>.<span class="ident">query_pairs_mut</span>().<span class="ident">append_pair</span>(<span class="string">&quot;id&quot;</span>, <span class="ident">id</span>);
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="self">self</span>
+        <span class="kw">let</span> <span class="ident">res_body</span> <span class="op">=</span> <span class="self">self</span>
             .<span class="ident">client</span>
             .<span class="ident">get</span>(<span class="ident">url</span>)
             .<span class="ident">send</span>()
             .<span class="kw">await</span>
             .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::RequestError</span> { <span class="ident">source</span>: <span class="ident">err</span> })<span class="question-mark">?</span>
-            .<span class="ident">json</span>::<span class="op">&lt;</span><span class="ident">models::station::DetailsResponse</span><span class="op">&gt;</span>()
+            .<span class="ident">text</span>()
             .<span class="kw">await</span>
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::ResponseParsingError</span> { <span class="ident">source</span>: <span class="ident">err</span> })<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">request</span>)
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::RequestError</span> { <span class="ident">source</span>: <span class="ident">err</span> })<span class="question-mark">?</span>;
+        <span class="ident">serde_json::from_str</span>::<span class="op">&lt;</span><span class="ident">models::station::DetailsResponse</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">res_body</span>)
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::ResponseParsingError</span> { <span class="ident">body</span>: <span class="ident">res_body</span> })
     }
 }
 </code></pre></div>

@@ -40,7 +40,6 @@
 <span id="35">35</span>
 <span id="36">36</span>
 <span id="37">37</span>
-<span id="38">38</span>
 </pre><pre class="rust"><code><span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Error</span>, <span class="ident">Debug</span>)]</span>
 
 <span class="doccomment">/// Contains all possible errors of the crate</span>
@@ -55,20 +54,19 @@
     },
     <span class="doccomment">/// Something went wrong during the parsing</span>
     <span class="doccomment">/// of the tankerkoenig api response.</span>
-    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Failed to parse json response&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Failed to parse json response: &#39;{body}&#39;&quot;</span>)]</span>
     <span class="ident">ResponseParsingError</span> {
-        <span class="doccomment">/// Error source</span>
-        <span class="attribute">#[<span class="ident">source</span>]</span>
-        <span class="ident">source</span>: <span class="ident">reqwest::Error</span>,
+        <span class="doccomment">/// Response body that could not be parsed</span>
+        <span class="ident">body</span>: <span class="ident">String</span>,
     },
-    <span class="doccomment">/// Somehing went wrong during header construction</span>
+    <span class="doccomment">/// Something went wrong during header construction</span>
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Failed to construct http header&quot;</span>)]</span>
     <span class="ident">HeaderConstruction</span> {
         <span class="doccomment">/// Error source</span>
         <span class="attribute">#[<span class="ident">from</span>]</span>
         <span class="ident">source</span>: <span class="ident">reqwest::header::InvalidHeaderValue</span>,
     },
-    <span class="doccomment">/// Somthing went wrong during http client creation</span>
+    <span class="doccomment">/// Something went wrong during http client creation</span>
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Failed to create http client&quot;</span>)]</span>
     <span class="ident">ClientConstruction</span> {
         <span class="doccomment">/// Error source</span>
