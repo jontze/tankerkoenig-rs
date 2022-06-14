@@ -1,5 +1,6 @@
 [package]
 name = "tankerkoenig"
+author = "Jontze <dev@jontze.com>"
 description = "API wrapper for the tankerkoenig api"
 version = "0.1.0"
 edition = "2021"
@@ -8,8 +9,8 @@ homepage = "https://github.com/jontze/tankerkoenig-rs"
 repository = "https://github.com/jontze/tankerkoenig-rs"
 documentation = "#"
 readme = "README.md"
-keywords = ["api-wrapper", "tankerkoenig", "api"]
-publish = false
+keywords = ["api-wrapper", "tankerkoenig", "api", "fuel", "germany", "fuel prices"]
+categories = ["API bindings"]
 
 [dependencies]
 thiserror = "1.0.30"
