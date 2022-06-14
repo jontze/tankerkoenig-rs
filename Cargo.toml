@@ -11,6 +11,9 @@ documentation = "#"
 readme = "README.md"
 keywords = ["api-wrapper", "tankerkoenig", "api", "fuel", "germany", "fuel prices"]
 categories = ["API bindings"]
+exclude = [
+    ".github/",
+]
 
 [dependencies]
 thiserror = "1.0.30"
