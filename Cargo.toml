@@ -2,7 +2,7 @@
 name = "tankerkoenig"
 author = "Jontze <dev@jontze.com>"
 description = "API wrapper for the tankerkoenig api"
-version = "0.1.0"
+version = "0.1.0-rc.1"
 edition = "2021"
 license = "MIT"
 homepage = "https://github.com/jontze/tankerkoenig-rs"
