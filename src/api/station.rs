@@ -57,16 +57,17 @@ impl StationApi {
             .append_pair("lng", &lng.to_string())
             .append_pair("rad", &radius.to_string())
             .append_pair("type", "all");
-        let request = self
+        let res_body = self
             .client
             .get(url)
             .send()
             .await
             .map_err(|err| error::TankerkoenigError::RequestError { source: err })?
-            .json::<models::station::AreaNearResponse>()
+            .text()
             .await
-            .map_err(|err| error::TankerkoenigError::ResponseParsingError { source: err })?;
-        Ok(request)
+            .map_err(|err| error::TankerkoenigError::RequestError { source: err })?;
+        serde_json::from_str::<models::station::AreaNearResponse>(&res_body)
+            .map_err(|_| error::TankerkoenigError::ResponseParsingError { body: res_body })
     }
 
     /// Fetch all stations in a radius around the given coordinates that sell a specific kind
@@ -103,16 +104,17 @@ impl StationApi {
             .append_pair("rad", &radius.to_string())
             .append_pair("type", &fuel.to_string())
             .append_pair("sort", &sort.to_string());
-        let request = self
+        let res_body = self
             .client
             .get(url)
             .send()
             .await
             .map_err(|err| error::TankerkoenigError::RequestError { source: err })?
-            .json::<models::station::AreaFuelResponse>()
+            .text()
             .await
-            .map_err(|err| error::TankerkoenigError::ResponseParsingError { source: err })?;
-        Ok(request)
+            .map_err(|err| error::TankerkoenigError::RequestError { source: err })?;
+        serde_json::from_str::<models::station::AreaFuelResponse>(&res_body)
+            .map_err(|_| error::TankerkoenigError::ResponseParsingError { body: res_body })
     }
 
     /// Fetch informations about a certain station by id.
@@ -135,15 +137,16 @@ impl StationApi {
         let id = id.as_ref();
         let mut url = construct_base_url(&self.options.api_key, Some("json/detail.php"))?;
         url.query_pairs_mut().append_pair("id", id);
-        let request = self
+        let res_body = self
             .client
             .get(url)
             .send()
             .await
             .map_err(|err| error::TankerkoenigError::RequestError { source: err })?
-            .json::<models::station::DetailsResponse>()
+            .text()
             .await
-            .map_err(|err| error::TankerkoenigError::ResponseParsingError { source: err })?;
-        Ok(request)
+            .map_err(|err| error::TankerkoenigError::RequestError { source: err })?;
+        serde_json::from_str::<models::station::DetailsResponse>(&res_body)
+            .map_err(|_| error::TankerkoenigError::ResponseParsingError { body: res_body })
     }
 }

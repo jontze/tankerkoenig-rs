@@ -12,20 +12,19 @@ pub enum TankerkoenigError {
     },
     /// Something went wrong during the parsing
     /// of the tankerkoenig api response.
-    #[error("Failed to parse json response")]
+    #[error("Failed to parse json response: '{body}'")]
     ResponseParsingError {
-        /// Error source
-        #[source]
-        source: reqwest::Error,
+        /// Response body that could not be parsed
+        body: String,
     },
-    /// Somehing went wrong during header construction
+    /// Something went wrong during header construction
     #[error("Failed to construct http header")]
     HeaderConstruction {
         /// Error source
         #[from]
         source: reqwest::header::InvalidHeaderValue,
     },
-    /// Somthing went wrong during http client creation
+    /// Something went wrong during http client creation
     #[error("Failed to create http client")]
     ClientConstruction {
         /// Error source
