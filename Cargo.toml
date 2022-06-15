@@ -10,7 +10,7 @@ repository = "https://github.com/jontze/tankerkoenig-rs"
 documentation = "https://docs.rs/tankerkoenig"
 readme = "README.md"
 keywords = ["api-wrapper", "tankerkoenig", "api", "fuel"]
-categories = ["API bindings"]
+categories = ["api-bindings"]
 exclude = [
     ".github/",
 ]
