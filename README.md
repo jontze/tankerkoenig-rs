@@ -1,5 +1,10 @@
 # tankerkoenig-rs
 
+[![GitHub license](https://img.shields.io/github/license/jontze/tankerkoenig-rs)](https://github.com/jontze/tankerkoenig-rs/blob/main/LICENSE)
+![crates.io](https://img.shields.io/crates/v/tankerkoenig.svg)
+![docs.rs](https://img.shields.io/docsrs/tankerkoenig)
+[![Main](https://github.com/jontze/tankerkoenig-rs/actions/workflows/main.yml/badge.svg)](https://github.com/jontze/tankerkoenig-rs/actions/workflows/main.yml)
+
 API wrapper for the [tankerkoenig-api](https://creativecommons.tankerkoenig.de/) written in rust.
 
 Gives you ready deserialized structs and a easy to use and strictly typed api.
