@@ -7,18 +7,24 @@
 
 API wrapper for the [tankerkoenig-api](https://creativecommons.tankerkoenig.de/) written in rust.
 
-Gives you ready deserialized structs and a easy to use and strictly typed api.
+The API of [tankerkoenig](https://creativecommons.tankerkoenig.de/) gives you realtime fuel prices for germany with Creative Commons License. This rust wrapper provides you ready deserialized structs and an easy to use and strictly typed api.
 
 ## Installation
 
-This crate is currently not released as it is still unter heavy development. However, if you still want to use it, you can install it by adding this to your `Cargo.toml`:
+This crate is under development. Especially the response parsing needs some more testing. However, if you still want to use it, you can install it by adding this to your `Cargo.toml`:
 
 ```toml
-
 [dependencies]
+tankerkoenig = "0.1.0-rc.1"
+# If you want to use the latest unreleased version:
 tankerkoenig = { git = "https://github.com/jontze/tankerkoenig-rs" }
 
 ```
+
+## Requirements
+
+1. Api Token for the [tankerkoenig-api](https://creativecommons.tankerkoenig.de/)
+2. Async runtime like [tokio](https://crates.io/crates/tokio)
 
 ## Quickstart
 
