@@ -3,10 +3,12 @@
 use super::Settings;
 use crate::error;
 use crate::models;
-use crate::utils::{baseline::construct_base_url, price::format_ids_string};
+use crate::utils::{baseline::construct_base_url, price::count_ids, price::format_ids_string};
 use reqwest::Client;
 use std::fmt::Display;
 use std::sync::Arc;
+
+const MAX_REQUEST_STATION_IDS: usize = 10;
 
 /// Struct that holds the current reqwest client of the library and gives access to the price api of
 /// the tankerkoenig API.
@@ -44,6 +46,12 @@ impl PriceApi {
 
     /// Fetch the prices of all fuel types of the given station ids.
     ///
+    /// ## Warning
+    /// You can only fetch 10 stations at once. If you want to fetch more than 10 stations,
+    /// you have to call this function multiple times. Otherwise, you will get an error.
+    /// This is due to a limitation of the [tankerkoenig API](https://creativecommons.tankerkoenig.de/).
+    /// Read more about that on their [website](https://creativecommons.tankerkoenig.de/)
+    ///
     /// ## Example
     /// ```
     /// use tankerkoenig::Tankerkoenig;
@@ -55,10 +63,20 @@ impl PriceApi {
     ///    Ok(prices)
     /// }
     /// ```
-    pub async fn fetch(
+    pub async fn fetch<I>(
         &self,
-        ids: impl IntoIterator<Item = impl AsRef<str> + Display>,
-    ) -> Result<models::price::PriceResponse, error::TankerkoenigError> {
+        ids: I,
+    ) -> Result<models::price::PriceResponse, error::TankerkoenigError>
+    where
+        I: IntoIterator,
+        I::Item: AsRef<str> + Display,
+    {
+        let (counter, ids) = count_ids(ids);
+        if counter.gt(&MAX_REQUEST_STATION_IDS) {
+            return Err(error::TankerkoenigError::TooManyStations {
+                max: MAX_REQUEST_STATION_IDS,
+            });
+        }
         let mut url = construct_base_url(&self.settings.api_key, Some("json/prices.php"))?;
         url.query_pairs_mut()
             .append_pair("ids", &format_ids_string(ids));
@@ -73,5 +91,26 @@ impl PriceApi {
             .map_err(|err| error::TankerkoenigError::RequestError { source: err })?;
         serde_json::from_str::<models::price::PriceResponse>(&res_body)
             .map_err(|_| error::TankerkoenigError::ResponseParsingError { body: res_body })
+    }
+}
+
+#[cfg(test)]
+mod test {
+
+    #[tokio::test]
+    async fn request_prices_for_too_many_stations() {
+        let tanker = crate::Tankerkoenig::new("dummy-api-key").unwrap();
+        let dummy_ids = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+        let prices_res = tanker.price.fetch(dummy_ids).await;
+        if prices_res.is_err() {
+            assert!(prices_res.is_err());
+            if let Err(crate::error::TankerkoenigError::TooManyStations { max }) = prices_res {
+                assert_eq!(max, 10);
+            } else {
+                panic!("Expected ToManystations Error");
+            }
+        } else {
+            panic!("Expected error");
+        }
     }
 }

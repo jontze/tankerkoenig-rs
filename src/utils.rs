@@ -52,6 +52,20 @@ pub mod price {
         }
         ids_string
     }
+
+    pub fn count_ids<I>(ids: I) -> (usize, Vec<I::Item>)
+    where
+        I: IntoIterator,
+        I::Item: AsRef<str> + Display,
+    {
+        let mut counted_ids = Vec::new();
+        let mut counter = 0_usize;
+        for item in ids.into_iter() {
+            counted_ids.push(item);
+            counter += 1;
+        }
+        (counter, counted_ids)
+    }
 }
 
 pub mod station {}
@@ -90,5 +104,16 @@ mod price_test {
         let ids = vec!["123", "456"];
         let ids_string = format_ids_string(ids);
         assert_eq!(ids_string, "123,456");
+    }
+
+    #[test]
+    fn should_count_and_return_ids() {
+        let dummy_ids = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+        let (count, counted_ids) = count_ids(dummy_ids);
+        assert_eq!(count, 11);
+        assert_eq!(counted_ids.len(), 11);
+        for (index, entry) in counted_ids.into_iter().enumerate() {
+            assert_eq!(entry, dummy_ids[index]);
+        }
     }
 }
