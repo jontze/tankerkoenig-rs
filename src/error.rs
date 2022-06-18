@@ -34,4 +34,10 @@ pub enum TankerkoenigError {
     /// Failed to parse the request url
     #[error("Failed to construct the url")]
     UrlConstruction,
+    /// Informations for too many stations were requested
+    #[error("The request is not possible as to many ids were given. Max: {max}")]
+    TooManyStations {
+        /// Maximum number of simultaneously requested stations exceeded
+        max: usize,
+    },
 }
