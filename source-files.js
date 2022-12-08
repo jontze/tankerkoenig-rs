@@ -1,3 +1,4 @@
-var N = null;var sourcesIndex = {};
-sourcesIndex["tankerkoenig"] = {"name":"","dirs":[{"name":"api","files":["mod.rs","price.rs","station.rs"]},{"name":"models","files":["mod.rs","price.rs","station.rs"]}],"files":["error.rs","lib.rs","utils.rs"]};
+var sourcesIndex = JSON.parse('{\
+"tankerkoenig":["",[["api",[],["mod.rs","price.rs","station.rs"]],["models",[],["mod.rs","price.rs","station.rs"]]],["error.rs","lib.rs","utils.rs"]]\
+}');
 createSourceSidebar();

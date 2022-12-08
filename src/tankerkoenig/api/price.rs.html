@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/api/price.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>price.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../tankerkoenig/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../../tankerkoenig/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../tankerkoenig/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/api/price.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>price.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../tankerkoenig/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../tankerkoenig/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../tankerkoenig/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -119,122 +114,135 @@
 <span id="114">114</span>
 <span id="115">115</span>
 <span id="116">116</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Price module that gives access to the [PriceApi] struct</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Price module that gives access to the [PriceApi] struct
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Settings</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::models</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils</span>::{<span class="ident">baseline::construct_base_url</span>, <span class="ident">price::count_ids</span>, <span class="ident">price::format_ids_string</span>};
-<span class="kw">use</span> <span class="ident">reqwest::Client</span>;
-<span class="kw">use</span> <span class="ident">std::fmt::Display</span>;
-<span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+</span><span class="kw">use </span><span class="kw">super</span>::Settings;
+<span class="kw">use </span><span class="kw">crate</span>::error;
+<span class="kw">use </span><span class="kw">crate</span>::models;
+<span class="kw">use </span><span class="kw">crate</span>::utils::{baseline::construct_base_url, price::format_ids_string};
+<span class="kw">use </span>reqwest::Client;
+<span class="kw">use </span>std::fmt::Display;
+<span class="kw">use </span>std::sync::Arc;
 
-<span class="kw">const</span> <span class="ident">MAX_REQUEST_STATION_IDS</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">10</span>;
+<span class="kw">const </span>MAX_REQUEST_STATION_IDS: usize = <span class="number">10</span>;
 
-<span class="doccomment">/// Struct that holds the current reqwest client of the library and gives access to the price api of</span>
-<span class="doccomment">/// the tankerkoenig API.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ## Example</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use tankerkoenig::Tankerkoenig;</span>
-<span class="doccomment">/// use tankerkoenig::models;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// async fn request_station_prices() -&gt; Result&lt;models::PriceResponse, tankerkoenig::Error&gt; {</span>
-<span class="doccomment">///    let tanker = Tankerkoenig::new(&quot;your-api-key&quot;)?;</span>
-<span class="doccomment">///    let prices = tanker.price.fetch(vec![&quot;station-id-1&quot;, &quot;station-id-1&quot;]).await?;</span>
-<span class="doccomment">///    Ok(prices)</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PriceApi</span> {
-    <span class="ident">client</span>: <span class="ident">Client</span>,
-    <span class="ident">settings</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Settings</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Struct that holds the current reqwest client of the library and gives access to the price api of
+/// the tankerkoenig API.
+///
+/// ## Example
+/// ```
+/// use tankerkoenig::Tankerkoenig;
+/// use tankerkoenig::models;
+///
+/// async fn request_station_prices() -&gt; Result&lt;models::PriceResponse, tankerkoenig::Error&gt; {
+///    let tanker = Tankerkoenig::new(&quot;your-api-key&quot;)?;
+///    let prices = tanker.price.fetch(&amp;[Some(&quot;station-id-1&quot;), Some(&quot;station-id-2&quot;), Some(&quot;station-id-3&quot;), Some(&quot;station-id-4&quot;), Some(&quot;station-id-5&quot;), None, None, None, None, None]).await?;
+///    Ok(prices)
+/// }
+/// ```
+</span><span class="attribute">#[derive(Debug, Clone)]
+</span><span class="kw">pub struct </span>PriceApi {
+    client: Client,
+    settings: Arc&lt;Settings&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">PriceApi</span> {
-    <span class="doccomment">/// Creates a new instance of the [PriceApi] struct that will give access to the price API</span>
-    <span class="doccomment">/// of tankerkoenig.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This struct is mainly used internally but can be used external as well. The</span>
-    <span class="doccomment">/// recommended way is to use the [Tankerkoenig](crate::Tankerkoenig) struct and</span>
-    <span class="doccomment">/// not to use the [PriceApi] struct directly.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// However, if you you still want to do this, you need to pass</span>
-    <span class="doccomment">/// an reqwest client and the Settings struct as parameter.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">client</span>: <span class="ident">Client</span>, <span class="ident">settings</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Settings</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">client</span>, <span class="ident">settings</span> }
+<span class="kw">impl </span>PriceApi {
+    <span class="doccomment">/// Creates a new instance of the [PriceApi] struct that will give access to the price API
+    /// of tankerkoenig.
+    ///
+    /// This struct is mainly used internally but can be used external as well. The
+    /// recommended way is to use the [Tankerkoenig](crate::Tankerkoenig) struct and
+    /// not to use the [PriceApi] struct directly.
+    ///
+    /// However, if you you still want to do this, you need to pass
+    /// an reqwest client and the Settings struct as parameter.
+    </span><span class="kw">pub fn </span>new(client: Client, settings: Arc&lt;Settings&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{ client, settings }
     }
 
-    <span class="doccomment">/// Fetch the prices of all fuel types of the given station ids.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ## Warning</span>
-    <span class="doccomment">/// You can only fetch 10 stations at once. If you want to fetch more than 10 stations,</span>
-    <span class="doccomment">/// you have to call this function multiple times. Otherwise, you will get an error.</span>
-    <span class="doccomment">/// This is due to a limitation of the [tankerkoenig API](https://creativecommons.tankerkoenig.de/).</span>
-    <span class="doccomment">/// Read more about that on their [website](https://creativecommons.tankerkoenig.de/)</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ## Example</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use tankerkoenig::Tankerkoenig;</span>
-    <span class="doccomment">/// use tankerkoenig::models;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// async fn request_station_prices() -&gt; Result&lt;models::PriceResponse, tankerkoenig::Error&gt; {</span>
-    <span class="doccomment">///    let tanker = Tankerkoenig::new(&quot;your-api-key&quot;)?;</span>
-    <span class="doccomment">///    let prices = tanker.price.fetch(vec![&quot;station-id-1&quot;, &quot;station-id-1&quot;]).await?;</span>
-    <span class="doccomment">///    Ok(prices)</span>
-    <span class="doccomment">/// }</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">fetch</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Fetch the prices of all fuel types of the given station ids (up to 10 at once).
+    ///
+    /// ## Further Explanation
+    /// You can only fetch 10 stations at once. If you want to fetch more than 10 stations,
+    /// you have to call this function multiple times. This is due to a limitation of the
+    /// [tankerkoenig API](https://creativecommons.tankerkoenig.de/).
+    /// Read more about that on their [website](https://creativecommons.tankerkoenig.de/)
+    ///
+    /// ## Example
+    /// ```
+    /// use tankerkoenig::Tankerkoenig;
+    /// use tankerkoenig::models;
+    ///
+    /// async fn request_station_prices() -&gt; Result&lt;models::PriceResponse, tankerkoenig::Error&gt; {
+    ///    let tanker = Tankerkoenig::new(&quot;your-api-key&quot;)?;
+    ///    let prices = tanker.price.fetch(&amp;[Some(&quot;station-id-1&quot;), Some(&quot;station-id-2&quot;), Some(&quot;station-id-3&quot;), Some(&quot;station-id-4&quot;), Some(&quot;station-id-5&quot;), None, None, None, None, None]).await?;
+    ///    Ok(prices)
+    /// }
+    /// ```
+    </span><span class="kw">pub async fn </span>fetch&lt;S&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">ids</span>: <span class="ident">I</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">models::price::PriceResponse</span>, <span class="ident">error::TankerkoenigError</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">I</span>: <span class="ident">IntoIterator</span>,
-        <span class="ident">I::Item</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Display</span>,
+        ids: <span class="kw-2">&amp;</span>[<span class="prelude-ty">Option</span>&lt;S&gt;; MAX_REQUEST_STATION_IDS],
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;models::price::PriceResponse, error::TankerkoenigError&gt;
+    <span class="kw">where
+        </span>S: AsRef&lt;str&gt; + Display,
     {
-        <span class="kw">let</span> (<span class="ident">counter</span>, <span class="ident">ids</span>) <span class="op">=</span> <span class="ident">count_ids</span>(<span class="ident">ids</span>);
-        <span class="kw">if</span> <span class="ident">counter</span>.<span class="ident">gt</span>(<span class="kw-2">&amp;</span><span class="ident">MAX_REQUEST_STATION_IDS</span>) {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::TankerkoenigError::TooManyStations</span> {
-                <span class="ident">max</span>: <span class="ident">MAX_REQUEST_STATION_IDS</span>,
-            });
-        }
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">url</span> <span class="op">=</span> <span class="ident">construct_base_url</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">settings</span>.<span class="ident">api_key</span>, <span class="prelude-val">Some</span>(<span class="string">&quot;json/prices.php&quot;</span>))<span class="question-mark">?</span>;
-        <span class="ident">url</span>.<span class="ident">query_pairs_mut</span>()
-            .<span class="ident">append_pair</span>(<span class="string">&quot;ids&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">format_ids_string</span>(<span class="ident">ids</span>));
-        <span class="kw">let</span> <span class="ident">res_body</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">client</span>
-            .<span class="ident">get</span>(<span class="ident">url</span>)
-            .<span class="ident">send</span>()
-            .<span class="kw">await</span>
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::RequestError</span> { <span class="ident">source</span>: <span class="ident">err</span> })<span class="question-mark">?</span>
-            .<span class="ident">text</span>()
-            .<span class="kw">await</span>
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::RequestError</span> { <span class="ident">source</span>: <span class="ident">err</span> })<span class="question-mark">?</span>;
-        <span class="ident">serde_json::from_str</span>::<span class="op">&lt;</span><span class="ident">models::price::PriceResponse</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">res_body</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">error::TankerkoenigError::ResponseParsingError</span> { <span class="ident">body</span>: <span class="ident">res_body</span> })
+        <span class="kw">let </span><span class="kw-2">mut </span>url = construct_base_url(<span class="kw-2">&amp;</span><span class="self">self</span>.settings.api_key, <span class="prelude-val">Some</span>(<span class="string">&quot;json/prices.php&quot;</span>))<span class="question-mark">?</span>;
+        url.query_pairs_mut()
+            .append_pair(<span class="string">&quot;ids&quot;</span>, <span class="kw-2">&amp;</span>format_ids_string(ids));
+        <span class="kw">let </span>res_body = <span class="self">self
+            </span>.client
+            .get(url)
+            .send()
+            .<span class="kw">await
+            </span>.map_err(|err| error::TankerkoenigError::RequestError { source: err })<span class="question-mark">?
+            </span>.text()
+            .<span class="kw">await
+            </span>.map_err(|err| error::TankerkoenigError::RequestError { source: err })<span class="question-mark">?</span>;
+        serde_json::from_str::&lt;models::price::PriceResponse&gt;(<span class="kw-2">&amp;</span>res_body)
+            .map_err(|<span class="kw">_</span>| error::TankerkoenigError::ResponseParsingError { body: res_body })
     }
-}
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-
-    <span class="attribute">#[<span class="ident">tokio::test</span>]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">request_prices_for_too_many_stations</span>() {
-        <span class="kw">let</span> <span class="ident">tanker</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::Tankerkoenig::new</span>(<span class="string">&quot;dummy-api-key&quot;</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">dummy_ids</span> <span class="op">=</span> [<span class="string">&quot;1&quot;</span>, <span class="string">&quot;2&quot;</span>, <span class="string">&quot;3&quot;</span>, <span class="string">&quot;4&quot;</span>, <span class="string">&quot;5&quot;</span>, <span class="string">&quot;6&quot;</span>, <span class="string">&quot;7&quot;</span>, <span class="string">&quot;8&quot;</span>, <span class="string">&quot;9&quot;</span>, <span class="string">&quot;10&quot;</span>, <span class="string">&quot;11&quot;</span>];
-        <span class="kw">let</span> <span class="ident">prices_res</span> <span class="op">=</span> <span class="ident">tanker</span>.<span class="ident">price</span>.<span class="ident">fetch</span>(<span class="ident">dummy_ids</span>).<span class="kw">await</span>;
-        <span class="kw">if</span> <span class="ident">prices_res</span>.<span class="ident">is_err</span>() {
-            <span class="macro">assert!</span>(<span class="ident">prices_res</span>.<span class="ident">is_err</span>());
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::error::TankerkoenigError::TooManyStations</span> { <span class="ident">max</span> }) <span class="op">=</span> <span class="ident">prices_res</span> {
-                <span class="macro">assert_eq!</span>(<span class="ident">max</span>, <span class="number">10</span>);
-            } <span class="kw">else</span> {
-                <span class="macro">panic!</span>(<span class="string">&quot;Expected ToManystations Error&quot;</span>);
-            }
-        } <span class="kw">else</span> {
-            <span class="macro">panic!</span>(<span class="string">&quot;Expected error&quot;</span>);
-        }
+    <span class="doccomment">/// Fetch the prices of a single station
+    ///
+    /// ## Example
+    /// ```
+    /// use tankerkoenig::Tankerkoenig;
+    /// use tankerkoenig::models;
+    ///
+    /// async fn request_single_station_prices() -&gt; Result&lt;models::PriceResponse, tankerkoenig::Error&gt; {
+    ///    let tanker = Tankerkoenig::new(&quot;your-api-key&quot;)?;
+    ///    let station_prices = tanker.price.fetch_one(&quot;station-id&quot;).await?;
+    ///    Ok(station_prices)
+    /// }
+    /// ```
+    </span><span class="kw">pub async fn </span>fetch_one&lt;S&gt;(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        id: S,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;models::price::PriceResponse, error::TankerkoenigError&gt;
+    <span class="kw">where
+        </span>S: AsRef&lt;str&gt; + Display,
+    {
+        <span class="kw">let </span><span class="kw-2">mut </span>url = construct_base_url(<span class="kw-2">&amp;</span><span class="self">self</span>.settings.api_key, <span class="prelude-val">Some</span>(<span class="string">&quot;json/prices.php&quot;</span>))<span class="question-mark">?</span>;
+        url.query_pairs_mut().append_pair(<span class="string">&quot;ids&quot;</span>, id.as_ref());
+        <span class="kw">let </span>res_body = <span class="self">self
+            </span>.client
+            .get(url)
+            .send()
+            .<span class="kw">await
+            </span>.map_err(|err| error::TankerkoenigError::RequestError { source: err })<span class="question-mark">?
+            </span>.text()
+            .<span class="kw">await
+            </span>.map_err(|err| error::TankerkoenigError::RequestError { source: err })<span class="question-mark">?</span>;
+        serde_json::from_str::&lt;models::price::PriceResponse&gt;(<span class="kw-2">&amp;</span>res_body)
+            .map_err(|<span class="kw">_</span>| error::TankerkoenigError::ResponseParsingError { body: res_body })
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="tankerkoenig" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="tankerkoenig" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

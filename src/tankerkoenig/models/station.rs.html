@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/models/station.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>station.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../tankerkoenig/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../../tankerkoenig/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../tankerkoenig/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/models/station.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>station.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../tankerkoenig/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../tankerkoenig/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../tankerkoenig/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -278,281 +273,280 @@
 <span id="273">273</span>
 <span id="274">274</span>
 <span id="275">275</span>
-</pre><pre class="rust"><code><span class="doccomment">//! This module contains rust structs that describe the response</span>
-<span class="doccomment">//! of the tankerkoenig stations API.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The json responses are parsed with serde to strongly typed</span>
-<span class="doccomment">//! rust structs.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! This module contains rust structs that describe the response
+//! of the tankerkoenig stations API.
+//!
+//! The json responses are parsed with serde to strongly typed
+//! rust structs.
 
-<span class="doccomment">/// Response of the tankerkoenig API for a request of fuel</span>
-<span class="doccomment">/// stations in a certain area</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AreaNearResponse</span> {
-    <span class="doccomment">/// Request status</span>
-    <span class="kw">pub</span> <span class="ident">ok</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Data licence</span>
-    <span class="kw">pub</span> <span class="ident">license</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Data source</span>
-    <span class="kw">pub</span> <span class="ident">data</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Request status</span>
-    <span class="kw">pub</span> <span class="ident">status</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Vector of fuel stations in the area</span>
-    <span class="kw">pub</span> <span class="ident">stations</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">NearStation</span><span class="op">&gt;</span>,
+/// Response of the tankerkoenig API for a request of fuel
+/// stations in a certain area
+</span><span class="attribute">#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
+</span><span class="kw">pub struct </span>AreaNearResponse {
+    <span class="doccomment">/// Request status
+    </span><span class="kw">pub </span>ok: bool,
+    <span class="doccomment">/// Data licence
+    </span><span class="kw">pub </span>license: String,
+    <span class="doccomment">/// Data source
+    </span><span class="kw">pub </span>data: String,
+    <span class="doccomment">/// Request status
+    </span><span class="kw">pub </span>status: String,
+    <span class="doccomment">/// Vector of fuel stations in the area
+    </span><span class="kw">pub </span>stations: Vec&lt;NearStation&gt;,
 }
 
-<span class="doccomment">/// Information of a fuel station in the area returned by the</span>
-<span class="doccomment">/// [AreaNearResponse].</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
-<span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;camelCase&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NearStation</span> {
-    <span class="doccomment">/// Station id</span>
-    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Name of the station</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Brand of the station (e.g. JET)</span>
-    <span class="kw">pub</span> <span class="ident">brand</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Street where the station is located</span>
-    <span class="kw">pub</span> <span class="ident">street</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Street number</span>
-    <span class="kw">pub</span> <span class="ident">house_number</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Local post code</span>
-    <span class="kw">pub</span> <span class="ident">post_code</span>: <span class="ident">i64</span>,
-    <span class="doccomment">/// Area of the station</span>
-    <span class="kw">pub</span> <span class="ident">place</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Latitude (geolocation)</span>
-    <span class="kw">pub</span> <span class="ident">lat</span>: <span class="ident">f64</span>,
-    <span class="doccomment">/// Longitude (geolocation)</span>
-    <span class="kw">pub</span> <span class="ident">lng</span>: <span class="ident">f64</span>,
-    <span class="doccomment">/// Distance from search point</span>
-    <span class="kw">pub</span> <span class="ident">dist</span>: <span class="ident">f64</span>,
-    <span class="doccomment">/// Diesel price</span>
-    <span class="kw">pub</span> <span class="ident">diesel</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// E5 price</span>
-    <span class="kw">pub</span> <span class="ident">e5</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// E10 price</span>
-    <span class="kw">pub</span> <span class="ident">e10</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Open or Closed</span>
-    <span class="kw">pub</span> <span class="ident">is_open</span>: <span class="ident">bool</span>,
+<span class="doccomment">/// Information of a fuel station in the area returned by the
+/// [AreaNearResponse].
+</span><span class="attribute">#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
+#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+</span><span class="kw">pub struct </span>NearStation {
+    <span class="doccomment">/// Station id
+    </span><span class="kw">pub </span>id: String,
+    <span class="doccomment">/// Name of the station
+    </span><span class="kw">pub </span>name: String,
+    <span class="doccomment">/// Brand of the station (e.g. JET)
+    </span><span class="kw">pub </span>brand: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    <span class="doccomment">/// Street where the station is located
+    </span><span class="kw">pub </span>street: String,
+    <span class="doccomment">/// Street number
+    </span><span class="kw">pub </span>house_number: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    <span class="doccomment">/// Local post code
+    </span><span class="kw">pub </span>post_code: i64,
+    <span class="doccomment">/// Area of the station
+    </span><span class="kw">pub </span>place: String,
+    <span class="doccomment">/// Latitude (geolocation)
+    </span><span class="kw">pub </span>lat: f64,
+    <span class="doccomment">/// Longitude (geolocation)
+    </span><span class="kw">pub </span>lng: f64,
+    <span class="doccomment">/// Distance from search point
+    </span><span class="kw">pub </span>dist: f64,
+    <span class="doccomment">/// Diesel price
+    </span><span class="kw">pub </span>diesel: <span class="prelude-ty">Option</span>&lt;f64&gt;,
+    <span class="doccomment">/// E5 price
+    </span><span class="kw">pub </span>e5: <span class="prelude-ty">Option</span>&lt;f64&gt;,
+    <span class="doccomment">/// E10 price
+    </span><span class="kw">pub </span>e10: <span class="prelude-ty">Option</span>&lt;f64&gt;,
+    <span class="doccomment">/// Open or Closed
+    </span><span class="kw">pub </span>is_open: bool,
 }
 
-<span class="doccomment">/// Response of the tankerkoenig API for a request for fuel in a</span>
-<span class="doccomment">/// certain area</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AreaFuelResponse</span> {
-    <span class="doccomment">/// Request status</span>
-    <span class="kw">pub</span> <span class="ident">ok</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Data licence</span>
-    <span class="kw">pub</span> <span class="ident">license</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Data source</span>
-    <span class="kw">pub</span> <span class="ident">data</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Request status</span>
-    <span class="kw">pub</span> <span class="ident">status</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// List of stations in the area with the requested fuel</span>
-    <span class="kw">pub</span> <span class="ident">stations</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">AreaStationFuel</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Response of the tankerkoenig API for a request for fuel in a
+/// certain area
+</span><span class="attribute">#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
+</span><span class="kw">pub struct </span>AreaFuelResponse {
+    <span class="doccomment">/// Request status
+    </span><span class="kw">pub </span>ok: bool,
+    <span class="doccomment">/// Data licence
+    </span><span class="kw">pub </span>license: String,
+    <span class="doccomment">/// Data source
+    </span><span class="kw">pub </span>data: String,
+    <span class="doccomment">/// Request status
+    </span><span class="kw">pub </span>status: String,
+    <span class="doccomment">/// List of stations in the area with the requested fuel
+    </span><span class="kw">pub </span>stations: Vec&lt;AreaStationFuel&gt;,
 }
 
-<span class="doccomment">/// Information about the fuel of a station in the area, returned</span>
-<span class="doccomment">/// by the [AreaFuelResponse]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
-<span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;camelCase&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AreaStationFuel</span> {
-    <span class="doccomment">/// Station id</span>
-    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Station name</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Brand of the station (e.g. JET)</span>
-    <span class="kw">pub</span> <span class="ident">brand</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Street where the station is located</span>
-    <span class="kw">pub</span> <span class="ident">street</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Street number</span>
-    <span class="kw">pub</span> <span class="ident">house_number</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Local post code</span>
-    <span class="kw">pub</span> <span class="ident">post_code</span>: <span class="ident">i64</span>,
-    <span class="doccomment">/// Area of the station</span>
-    <span class="kw">pub</span> <span class="ident">place</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Latitude (geolocation)</span>
-    <span class="kw">pub</span> <span class="ident">lat</span>: <span class="ident">f64</span>,
-    <span class="doccomment">/// Longitude (geolocation)</span>
-    <span class="kw">pub</span> <span class="ident">lng</span>: <span class="ident">f64</span>,
-    <span class="doccomment">/// Distance of the station</span>
-    <span class="kw">pub</span> <span class="ident">dist</span>: <span class="ident">f64</span>,
-    <span class="doccomment">/// Price of the requested fuel</span>
-    <span class="kw">pub</span> <span class="ident">price</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Open or closed</span>
-    <span class="kw">pub</span> <span class="ident">is_open</span>: <span class="ident">bool</span>,
+<span class="doccomment">/// Information about the fuel of a station in the area, returned
+/// by the [AreaFuelResponse]
+</span><span class="attribute">#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
+#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+</span><span class="kw">pub struct </span>AreaStationFuel {
+    <span class="doccomment">/// Station id
+    </span><span class="kw">pub </span>id: String,
+    <span class="doccomment">/// Station name
+    </span><span class="kw">pub </span>name: String,
+    <span class="doccomment">/// Brand of the station (e.g. JET)
+    </span><span class="kw">pub </span>brand: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    <span class="doccomment">/// Street where the station is located
+    </span><span class="kw">pub </span>street: String,
+    <span class="doccomment">/// Street number
+    </span><span class="kw">pub </span>house_number: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    <span class="doccomment">/// Local post code
+    </span><span class="kw">pub </span>post_code: i64,
+    <span class="doccomment">/// Area of the station
+    </span><span class="kw">pub </span>place: String,
+    <span class="doccomment">/// Latitude (geolocation)
+    </span><span class="kw">pub </span>lat: f64,
+    <span class="doccomment">/// Longitude (geolocation)
+    </span><span class="kw">pub </span>lng: f64,
+    <span class="doccomment">/// Distance of the station
+    </span><span class="kw">pub </span>dist: f64,
+    <span class="doccomment">/// Price of the requested fuel
+    </span><span class="kw">pub </span>price: <span class="prelude-ty">Option</span>&lt;f64&gt;,
+    <span class="doccomment">/// Open or closed
+    </span><span class="kw">pub </span>is_open: bool,
 }
 
-<span class="doccomment">/// Response of the tankerkoenig API for a request of detailed</span>
-<span class="doccomment">/// information for a specific fuel station</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DetailsResponse</span> {
-    <span class="doccomment">/// Request status</span>
-    <span class="kw">pub</span> <span class="ident">ok</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Data licence</span>
-    <span class="kw">pub</span> <span class="ident">license</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Data source</span>
-    <span class="kw">pub</span> <span class="ident">data</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Request status</span>
-    <span class="kw">pub</span> <span class="ident">status</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Detailed fuel station information</span>
-    <span class="kw">pub</span> <span class="ident">station</span>: <span class="ident">DetailStation</span>,
+<span class="doccomment">/// Response of the tankerkoenig API for a request of detailed
+/// information for a specific fuel station
+</span><span class="attribute">#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
+</span><span class="kw">pub struct </span>DetailsResponse {
+    <span class="doccomment">/// Request status
+    </span><span class="kw">pub </span>ok: bool,
+    <span class="doccomment">/// Data licence
+    </span><span class="kw">pub </span>license: String,
+    <span class="doccomment">/// Data source
+    </span><span class="kw">pub </span>data: String,
+    <span class="doccomment">/// Request status
+    </span><span class="kw">pub </span>status: String,
+    <span class="doccomment">/// Detailed fuel station information
+    </span><span class="kw">pub </span>station: DetailStation,
 }
 
-<span class="doccomment">/// Detailed information of a fuel station, returned by the [DetailsResponse]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
-<span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;camelCase&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DetailStation</span> {
-    <span class="doccomment">/// Station id</span>
-    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Name of the station</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Brand of the station (e.g. JET)</span>
-    <span class="kw">pub</span> <span class="ident">brand</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Street where the station is located</span>
-    <span class="kw">pub</span> <span class="ident">street</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Street number</span>
-    <span class="kw">pub</span> <span class="ident">house_number</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Local post code</span>
-    <span class="kw">pub</span> <span class="ident">post_code</span>: <span class="ident">i64</span>,
-    <span class="doccomment">/// Area of the station</span>
-    <span class="kw">pub</span> <span class="ident">place</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Open 24 hours</span>
-    <span class="kw">pub</span> <span class="ident">whole_day</span>: <span class="ident">bool</span>,
-    <span class="doccomment">///Currently open or closed</span>
-    <span class="kw">pub</span> <span class="ident">is_open</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Diesel price</span>
-    <span class="kw">pub</span> <span class="ident">diesel</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// E5 price</span>
-    <span class="kw">pub</span> <span class="ident">e5</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// E10 price</span>
-    <span class="kw">pub</span> <span class="ident">e10</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Latitude (geolocation)</span>
-    <span class="kw">pub</span> <span class="ident">lat</span>: <span class="ident">f64</span>,
-    <span class="doccomment">/// Longitude (geolocation)</span>
-    <span class="kw">pub</span> <span class="ident">lng</span>: <span class="ident">f64</span>,
-    <span class="doccomment">/// State of the station</span>
-    <span class="kw">pub</span> <span class="ident">state</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Additional information</span>
-    <span class="kw">pub</span> <span class="ident">overrides</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Opening times of the station</span>
-    <span class="kw">pub</span> <span class="ident">opening_times</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">OpeningTimes</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Detailed information of a fuel station, returned by the [DetailsResponse]
+</span><span class="attribute">#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
+#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+</span><span class="kw">pub struct </span>DetailStation {
+    <span class="doccomment">/// Station id
+    </span><span class="kw">pub </span>id: String,
+    <span class="doccomment">/// Name of the station
+    </span><span class="kw">pub </span>name: String,
+    <span class="doccomment">/// Brand of the station (e.g. JET)
+    </span><span class="kw">pub </span>brand: String,
+    <span class="doccomment">/// Street where the station is located
+    </span><span class="kw">pub </span>street: String,
+    <span class="doccomment">/// Street number
+    </span><span class="kw">pub </span>house_number: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    <span class="doccomment">/// Local post code
+    </span><span class="kw">pub </span>post_code: i64,
+    <span class="doccomment">/// Area of the station
+    </span><span class="kw">pub </span>place: String,
+    <span class="doccomment">/// Open 24 hours
+    </span><span class="kw">pub </span>whole_day: bool,
+    <span class="doccomment">///Currently open or closed
+    </span><span class="kw">pub </span>is_open: bool,
+    <span class="doccomment">/// Diesel price
+    </span><span class="kw">pub </span>diesel: <span class="prelude-ty">Option</span>&lt;f64&gt;,
+    <span class="doccomment">/// E5 price
+    </span><span class="kw">pub </span>e5: <span class="prelude-ty">Option</span>&lt;f64&gt;,
+    <span class="doccomment">/// E10 price
+    </span><span class="kw">pub </span>e10: <span class="prelude-ty">Option</span>&lt;f64&gt;,
+    <span class="doccomment">/// Latitude (geolocation)
+    </span><span class="kw">pub </span>lat: f64,
+    <span class="doccomment">/// Longitude (geolocation)
+    </span><span class="kw">pub </span>lng: f64,
+    <span class="doccomment">/// State of the station
+    </span><span class="kw">pub </span>state: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    <span class="doccomment">/// Additional information
+    </span><span class="kw">pub </span>overrides: Vec&lt;String&gt;,
+    <span class="doccomment">/// Opening times of the station
+    </span><span class="kw">pub </span>opening_times: Vec&lt;OpeningTimes&gt;,
 }
 
-<span class="doccomment">/// Opening times for a fuel station</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>, <span class="ident">Hash</span>, <span class="ident">Eq</span>, <span class="ident">Ord</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OpeningTimes</span> {
-    <span class="doccomment">/// Information about the scope of start end end</span>
-    <span class="kw">pub</span> <span class="ident">text</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Opening time</span>
-    <span class="kw">pub</span> <span class="ident">start</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Closing time</span>
-    <span class="kw">pub</span> <span class="ident">end</span>: <span class="ident">String</span>,
+<span class="doccomment">/// Opening times for a fuel station
+</span><span class="attribute">#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone, Hash, Eq, Ord)]
+</span><span class="kw">pub struct </span>OpeningTimes {
+    <span class="doccomment">/// Information about the scope of start end end
+    </span><span class="kw">pub </span>text: String,
+    <span class="doccomment">/// Opening time
+    </span><span class="kw">pub </span>start: String,
+    <span class="doccomment">/// Closing time
+    </span><span class="kw">pub </span>end: String,
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">deserialize_area_station_response</span>() {
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">std::fs::read_to_string</span>(<span class="string">&quot;./test/data/list.json&quot;</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">station_response</span>: <span class="ident">AreaFuelResponse</span> <span class="op">=</span> <span class="ident">serde_json::from_str</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">station</span> <span class="op">=</span> <span class="ident">station_response</span>.<span class="ident">stations</span>.<span class="ident">get</span>(<span class="number">0</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">station_response</span>.<span class="ident">ok</span>, <span class="bool-val">true</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>deserialize_area_station_response() {
+        <span class="kw">let </span>data = std::fs::read_to_string(<span class="string">&quot;./test/data/list.json&quot;</span>).unwrap();
+        <span class="kw">let </span>station_response: AreaFuelResponse = serde_json::from_str(<span class="kw-2">&amp;</span>data).unwrap();
+        <span class="kw">let </span>station = station_response.stations.get(<span class="number">0</span>).unwrap();
+        <span class="macro">assert_eq!</span>(station_response.ok, <span class="bool-val">true</span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">station_response</span>.<span class="ident">license</span>,
-            <span class="string">&quot;CC BY 4.0 -  https://creativecommons.tankerkoenig.de&quot;</span>
-        );
-        <span class="macro">assert_eq!</span>(<span class="ident">station_response</span>.<span class="ident">data</span>, <span class="string">&quot;MTS-K&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station_response</span>.<span class="ident">status</span>, <span class="string">&quot;ok&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">id</span>, <span class="string">&quot;474e5046-deaf-4f9b-9a32-9797b778f047&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">name</span>, <span class="string">&quot;TotalEnergies Berlin&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">brand</span>, <span class="prelude-val">Some</span>(<span class="ident">String::from</span>(<span class="string">&quot;TotalEnergies&quot;</span>)));
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">street</span>, <span class="string">&quot;Margarete-Sommer-Str.&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">place</span>, <span class="string">&quot;Berlin&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">lat</span>, <span class="number">52.530831</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">lng</span>, <span class="number">13.440946</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">dist</span>, <span class="number">0_f64</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">price</span>, <span class="prelude-val">Some</span>(<span class="number">1.649</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">is_open</span>, <span class="bool-val">true</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">house_number</span>, <span class="prelude-val">Some</span>(<span class="ident">String::from</span>(<span class="string">&quot;2&quot;</span>)));
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">post_code</span>, <span class="number">10407</span>);
+            station_response.license,
+            <span class="string">&quot;CC BY 4.0 -  https://creativecommons.tankerkoenig.de&quot;
+        </span>);
+        <span class="macro">assert_eq!</span>(station_response.data, <span class="string">&quot;MTS-K&quot;</span>);
+        <span class="macro">assert_eq!</span>(station_response.status, <span class="string">&quot;ok&quot;</span>);
+        <span class="macro">assert_eq!</span>(station.id, <span class="string">&quot;474e5046-deaf-4f9b-9a32-9797b778f047&quot;</span>);
+        <span class="macro">assert_eq!</span>(station.name, <span class="string">&quot;TotalEnergies Berlin&quot;</span>);
+        <span class="macro">assert_eq!</span>(station.brand, <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;TotalEnergies&quot;</span>)));
+        <span class="macro">assert_eq!</span>(station.street, <span class="string">&quot;Margarete-Sommer-Str.&quot;</span>);
+        <span class="macro">assert_eq!</span>(station.place, <span class="string">&quot;Berlin&quot;</span>);
+        <span class="macro">assert_eq!</span>(station.lat, <span class="number">52.530831</span>);
+        <span class="macro">assert_eq!</span>(station.lng, <span class="number">13.440946</span>);
+        <span class="macro">assert_eq!</span>(station.dist, <span class="number">0_f64</span>);
+        <span class="macro">assert_eq!</span>(station.price, <span class="prelude-val">Some</span>(<span class="number">1.649</span>));
+        <span class="macro">assert_eq!</span>(station.is_open, <span class="bool-val">true</span>);
+        <span class="macro">assert_eq!</span>(station.house_number, <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;2&quot;</span>)));
+        <span class="macro">assert_eq!</span>(station.post_code, <span class="number">10407</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">deserialize_area_stations_near_response</span>() {
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">std::fs::read_to_string</span>(<span class="string">&quot;./test/data/list_near.json&quot;</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">station_response</span>: <span class="ident">AreaNearResponse</span> <span class="op">=</span> <span class="ident">serde_json::from_str</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">station</span> <span class="op">=</span> <span class="ident">station_response</span>.<span class="ident">stations</span>.<span class="ident">get</span>(<span class="number">0</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">station_response</span>.<span class="ident">ok</span>, <span class="bool-val">true</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>deserialize_area_stations_near_response() {
+        <span class="kw">let </span>data = std::fs::read_to_string(<span class="string">&quot;./test/data/list_near.json&quot;</span>).unwrap();
+        <span class="kw">let </span>station_response: AreaNearResponse = serde_json::from_str(<span class="kw-2">&amp;</span>data).unwrap();
+        <span class="kw">let </span>station = station_response.stations.get(<span class="number">0</span>).unwrap();
+        <span class="macro">assert_eq!</span>(station_response.ok, <span class="bool-val">true</span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">station_response</span>.<span class="ident">license</span>,
-            <span class="string">&quot;CC BY 4.0 -  https://creativecommons.tankerkoenig.de&quot;</span>
-        );
-        <span class="macro">assert_eq!</span>(<span class="ident">station_response</span>.<span class="ident">data</span>, <span class="string">&quot;MTS-K&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station_response</span>.<span class="ident">status</span>, <span class="string">&quot;ok&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">id</span>, <span class="string">&quot;474e5046-deaf-4f9b-9a32-9797b778f047&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">name</span>, <span class="string">&quot;TotalEnergies Berlin&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">brand</span>, <span class="prelude-val">Some</span>(<span class="ident">String::from</span>(<span class="string">&quot;TotalEnergies&quot;</span>)));
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">street</span>, <span class="string">&quot;Margarete-Sommer-Str.&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">place</span>, <span class="string">&quot;Berlin&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">lat</span>, <span class="number">52.530831</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">lng</span>, <span class="number">13.440946</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">dist</span>, <span class="number">0_f64</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">diesel</span>, <span class="prelude-val">Some</span>(<span class="number">1.489</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">e5</span>, <span class="prelude-val">Some</span>(<span class="number">1.649</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">e10</span>, <span class="prelude-val">Some</span>(<span class="number">1.589</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">is_open</span>, <span class="bool-val">true</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">house_number</span>, <span class="prelude-val">Some</span>(<span class="ident">String::from</span>(<span class="string">&quot;2&quot;</span>)));
-        <span class="macro">assert_eq!</span>(<span class="ident">station</span>.<span class="ident">post_code</span>, <span class="number">10407</span>);
+            station_response.license,
+            <span class="string">&quot;CC BY 4.0 -  https://creativecommons.tankerkoenig.de&quot;
+        </span>);
+        <span class="macro">assert_eq!</span>(station_response.data, <span class="string">&quot;MTS-K&quot;</span>);
+        <span class="macro">assert_eq!</span>(station_response.status, <span class="string">&quot;ok&quot;</span>);
+        <span class="macro">assert_eq!</span>(station.id, <span class="string">&quot;474e5046-deaf-4f9b-9a32-9797b778f047&quot;</span>);
+        <span class="macro">assert_eq!</span>(station.name, <span class="string">&quot;TotalEnergies Berlin&quot;</span>);
+        <span class="macro">assert_eq!</span>(station.brand, <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;TotalEnergies&quot;</span>)));
+        <span class="macro">assert_eq!</span>(station.street, <span class="string">&quot;Margarete-Sommer-Str.&quot;</span>);
+        <span class="macro">assert_eq!</span>(station.place, <span class="string">&quot;Berlin&quot;</span>);
+        <span class="macro">assert_eq!</span>(station.lat, <span class="number">52.530831</span>);
+        <span class="macro">assert_eq!</span>(station.lng, <span class="number">13.440946</span>);
+        <span class="macro">assert_eq!</span>(station.dist, <span class="number">0_f64</span>);
+        <span class="macro">assert_eq!</span>(station.diesel, <span class="prelude-val">Some</span>(<span class="number">1.489</span>));
+        <span class="macro">assert_eq!</span>(station.e5, <span class="prelude-val">Some</span>(<span class="number">1.649</span>));
+        <span class="macro">assert_eq!</span>(station.e10, <span class="prelude-val">Some</span>(<span class="number">1.589</span>));
+        <span class="macro">assert_eq!</span>(station.is_open, <span class="bool-val">true</span>);
+        <span class="macro">assert_eq!</span>(station.house_number, <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;2&quot;</span>)));
+        <span class="macro">assert_eq!</span>(station.post_code, <span class="number">10407</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">deserialize_detail_station_response</span>() {
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">std::fs::read_to_string</span>(<span class="string">&quot;./test/data/detail.json&quot;</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">station_detail_response</span>: <span class="ident">DetailsResponse</span> <span class="op">=</span> <span class="ident">serde_json::from_str</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">opening_times</span> <span class="op">=</span> <span class="ident">station_detail_response</span>
-            .<span class="ident">station</span>
-            .<span class="ident">opening_times</span>
-            .<span class="ident">get</span>(<span class="number">0</span>)
-            .<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">ok</span>, <span class="bool-val">true</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>deserialize_detail_station_response() {
+        <span class="kw">let </span>data = std::fs::read_to_string(<span class="string">&quot;./test/data/detail.json&quot;</span>).unwrap();
+        <span class="kw">let </span>station_detail_response: DetailsResponse = serde_json::from_str(<span class="kw-2">&amp;</span>data).unwrap();
+        <span class="kw">let </span>opening_times = station_detail_response
+            .station
+            .opening_times
+            .get(<span class="number">0</span>)
+            .unwrap();
+        <span class="macro">assert_eq!</span>(station_detail_response.ok, <span class="bool-val">true</span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">station_detail_response</span>.<span class="ident">license</span>,
-            <span class="string">&quot;CC BY 4.0 -  https://creativecommons.tankerkoenig.de&quot;</span>
-        );
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">data</span>, <span class="string">&quot;MTS-K&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">status</span>, <span class="string">&quot;ok&quot;</span>);
+            station_detail_response.license,
+            <span class="string">&quot;CC BY 4.0 -  https://creativecommons.tankerkoenig.de&quot;
+        </span>);
+        <span class="macro">assert_eq!</span>(station_detail_response.data, <span class="string">&quot;MTS-K&quot;</span>);
+        <span class="macro">assert_eq!</span>(station_detail_response.status, <span class="string">&quot;ok&quot;</span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">id</span>,
-            <span class="string">&quot;24a381e3-0d72-416d-bfd8-b2f65f6e5802&quot;</span>
-        );
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">name</span>, <span class="string">&quot;Esso Tankstelle&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">brand</span>, <span class="string">&quot;ESSO&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">street</span>, <span class="string">&quot;HAUPTSTR. 7&quot;</span>);
+            station_detail_response.station.id,
+            <span class="string">&quot;24a381e3-0d72-416d-bfd8-b2f65f6e5802&quot;
+        </span>);
+        <span class="macro">assert_eq!</span>(station_detail_response.station.name, <span class="string">&quot;Esso Tankstelle&quot;</span>);
+        <span class="macro">assert_eq!</span>(station_detail_response.station.brand, <span class="string">&quot;ESSO&quot;</span>);
+        <span class="macro">assert_eq!</span>(station_detail_response.station.street, <span class="string">&quot;HAUPTSTR. 7&quot;</span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">house_number</span>,
-            <span class="prelude-val">Some</span>(<span class="ident">String::from</span>(<span class="string">&quot; &quot;</span>))
+            station_detail_response.station.house_number,
+            <span class="prelude-val">Some</span>(String::from(<span class="string">&quot; &quot;</span>))
         );
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">post_code</span>, <span class="number">84152</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">place</span>, <span class="string">&quot;MENGKOFEN&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">whole_day</span>, <span class="bool-val">false</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">is_open</span>, <span class="bool-val">false</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">e5</span>, <span class="prelude-val">Some</span>(<span class="number">1.379</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">e10</span>, <span class="prelude-val">Some</span>(<span class="number">1.359</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">diesel</span>, <span class="prelude-val">Some</span>(<span class="number">1.169</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">lat</span>, <span class="number">48.72210601</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">lng</span>, <span class="number">12.44438439</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">state</span>, <span class="prelude-val">None</span>);
+        <span class="macro">assert_eq!</span>(station_detail_response.station.post_code, <span class="number">84152</span>);
+        <span class="macro">assert_eq!</span>(station_detail_response.station.place, <span class="string">&quot;MENGKOFEN&quot;</span>);
+        <span class="macro">assert_eq!</span>(station_detail_response.station.whole_day, <span class="bool-val">false</span>);
+        <span class="macro">assert_eq!</span>(station_detail_response.station.is_open, <span class="bool-val">false</span>);
+        <span class="macro">assert_eq!</span>(station_detail_response.station.e5, <span class="prelude-val">Some</span>(<span class="number">1.379</span>));
+        <span class="macro">assert_eq!</span>(station_detail_response.station.e10, <span class="prelude-val">Some</span>(<span class="number">1.359</span>));
+        <span class="macro">assert_eq!</span>(station_detail_response.station.diesel, <span class="prelude-val">Some</span>(<span class="number">1.169</span>));
+        <span class="macro">assert_eq!</span>(station_detail_response.station.lat, <span class="number">48.72210601</span>);
+        <span class="macro">assert_eq!</span>(station_detail_response.station.lng, <span class="number">12.44438439</span>);
+        <span class="macro">assert_eq!</span>(station_detail_response.station.state, <span class="prelude-val">None</span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">station_detail_response</span>.<span class="ident">station</span>.<span class="ident">overrides</span>.<span class="ident">get</span>(<span class="number">0</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;13.04.2017, 15:00:00 - 13.11.2017, 15:00:00: geschlossen&quot;</span>
-        );
-        <span class="macro">assert_eq!</span>(<span class="ident">opening_times</span>.<span class="ident">text</span>, <span class="string">&quot;Mo-Fr&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">opening_times</span>.<span class="ident">start</span>, <span class="string">&quot;06:00:00&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">opening_times</span>.<span class="ident">end</span>, <span class="string">&quot;22:30:00&quot;</span>);
+            station_detail_response.station.overrides.get(<span class="number">0</span>).unwrap(),
+            <span class="string">&quot;13.04.2017, 15:00:00 - 13.11.2017, 15:00:00: geschlossen&quot;
+        </span>);
+        <span class="macro">assert_eq!</span>(opening_times.text, <span class="string">&quot;Mo-Fr&quot;</span>);
+        <span class="macro">assert_eq!</span>(opening_times.start, <span class="string">&quot;06:00:00&quot;</span>);
+        <span class="macro">assert_eq!</span>(opening_times.end, <span class="string">&quot;22:30:00&quot;</span>);
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="tankerkoenig" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="tankerkoenig" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/models/price.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>price.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../tankerkoenig/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../../tankerkoenig/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../tankerkoenig/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/models/price.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>price.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../tankerkoenig/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../tankerkoenig/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../tankerkoenig/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -207,210 +202,209 @@
 <span id="202">202</span>
 <span id="203">203</span>
 <span id="204">204</span>
-</pre><pre class="rust"><code><span class="doccomment">//! This module contains rust structs that describe the response of the tankerkoenig</span>
-<span class="doccomment">//! prices API.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The json responses are parsed with serde to strongly typed rust structs.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! This module contains rust structs that describe the response of the tankerkoenig
+//! prices API.
+//!
+//! The json responses are parsed with serde to strongly typed rust structs.
 
-<span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Deserializer</span>};
-<span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
+</span><span class="kw">use </span>serde::{Deserialize, Deserializer};
+<span class="kw">use </span>std::collections::HashMap;
 
-<span class="doccomment">/// Response of the tankerkoenig api mapped to a rust struct with serde.</span>
-<span class="doccomment">/// The struct holds information about fuel prices for a collection of stations.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PriceResponse</span> {
-    <span class="doccomment">/// Request status</span>
-    <span class="kw">pub</span> <span class="ident">ok</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Data licence</span>
-    <span class="kw">pub</span> <span class="ident">license</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Data licence</span>
-    <span class="kw">pub</span> <span class="ident">data</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Fuel prices of requested stations</span>
-    <span class="kw">pub</span> <span class="ident">prices</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">StationPrices</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Response of the tankerkoenig api mapped to a rust struct with serde.
+/// The struct holds information about fuel prices for a collection of stations.
+</span><span class="attribute">#[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
+</span><span class="kw">pub struct </span>PriceResponse {
+    <span class="doccomment">/// Request status
+    </span><span class="kw">pub </span>ok: bool,
+    <span class="doccomment">/// Data licence
+    </span><span class="kw">pub </span>license: String,
+    <span class="doccomment">/// Data licence
+    </span><span class="kw">pub </span>data: String,
+    <span class="doccomment">/// Fuel prices of requested stations
+    </span><span class="kw">pub </span>prices: HashMap&lt;String, StationPrices&gt;,
 }
 
-<span class="doccomment">/// Fuel prices of a station. If one field is `Noone` the station doesn&#39;t offer the</span>
-<span class="doccomment">/// fuel or it is currently not possibleto fetch the price.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StationPrices</span> {
-    <span class="doccomment">/// Station open or closed</span>
-    <span class="kw">pub</span> <span class="ident">status</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Price for E5</span>
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">deserialize_with</span> <span class="op">=</span> <span class="string">&quot;de_from_bool_or_number&quot;</span>, <span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;default_fuel&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="ident">e5</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Price for E10</span>
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">deserialize_with</span> <span class="op">=</span> <span class="string">&quot;de_from_bool_or_number&quot;</span>, <span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;default_fuel&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="ident">e10</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Price for diesel</span>
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">deserialize_with</span> <span class="op">=</span> <span class="string">&quot;de_from_bool_or_number&quot;</span>, <span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;default_fuel&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="ident">diesel</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Fuel prices of a station. If one field is `Noone` the station doesn&#39;t offer the
+/// fuel or it is currently not possibleto fetch the price.
+</span><span class="attribute">#[derive(Debug, Deserialize, Serialize, PartialEq, PartialOrd, Clone)]
+</span><span class="kw">pub struct </span>StationPrices {
+    <span class="doccomment">/// Station open or closed
+    </span><span class="kw">pub </span>status: String,
+    <span class="doccomment">/// Price for E5
+    </span><span class="attribute">#[serde(deserialize_with = <span class="string">&quot;de_from_bool_or_number&quot;</span>, default = <span class="string">&quot;default_fuel&quot;</span>)]
+    </span><span class="kw">pub </span>e5: <span class="prelude-ty">Option</span>&lt;f64&gt;,
+    <span class="doccomment">/// Price for E10
+    </span><span class="attribute">#[serde(deserialize_with = <span class="string">&quot;de_from_bool_or_number&quot;</span>, default = <span class="string">&quot;default_fuel&quot;</span>)]
+    </span><span class="kw">pub </span>e10: <span class="prelude-ty">Option</span>&lt;f64&gt;,
+    <span class="doccomment">/// Price for diesel
+    </span><span class="attribute">#[serde(deserialize_with = <span class="string">&quot;de_from_bool_or_number&quot;</span>, default = <span class="string">&quot;default_fuel&quot;</span>)]
+    </span><span class="kw">pub </span>diesel: <span class="prelude-ty">Option</span>&lt;f64&gt;,
 }
 
-<span class="doccomment">/// This function should just return always null as fallback.</span>
-<span class="doccomment">/// This is required as the custom deserialization can&#39;t handle missing values.</span>
-<span class="kw">fn</span> <span class="ident">default_fuel</span>() -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="number">1</span> <span class="op">&lt;</span> <span class="number">0</span> {
+<span class="doccomment">/// This function should just return always null as fallback.
+/// This is required as the custom deserialization can&#39;t handle missing values.
+</span><span class="kw">fn </span>default_fuel() -&gt; <span class="prelude-ty">Option</span>&lt;f64&gt; {
+    <span class="kw">if </span><span class="number">1 </span>&lt; <span class="number">0 </span>{
         <span class="prelude-val">Some</span>(<span class="number">1_f64</span>)
-    } <span class="kw">else</span> {
-        <span class="prelude-val">None</span>
-    }
+    } <span class="kw">else </span>{
+        <span class="prelude-val">None
+    </span>}
 }
 
-<span class="kw">fn</span> <span class="ident">de_from_bool_or_number</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span><span class="op">&gt;</span>(<span class="ident">deserializer</span>: <span class="ident">D</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>, <span class="ident">D::Error</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span>,
+<span class="kw">fn </span>de_from_bool_or_number&lt;<span class="lifetime">&#39;de</span>, D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;f64&gt;, D::Error&gt;
+<span class="kw">where
+    </span>D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;,
 {
-    <span class="kw">let</span> <span class="ident">parsed_value</span> <span class="op">=</span> <span class="prelude-ty">Option</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span><span class="ident">::deserialize</span>(<span class="ident">deserializer</span>);
-    <span class="kw">match</span> <span class="ident">parsed_value</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">value</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">value</span>),
+    <span class="kw">let </span>parsed_value = <span class="prelude-ty">Option</span>::&lt;f64&gt;::deserialize(deserializer);
+    <span class="kw">match </span>parsed_value {
+        <span class="prelude-val">Ok</span>(value) =&gt; <span class="prelude-val">Ok</span>(value),
         <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">deserialize_station_price_response</span>() {
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">std::fs::read_to_string</span>(<span class="string">&quot;./test/data/prices.json&quot;</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">prices_response</span>: <span class="ident">PriceResponse</span> <span class="op">=</span> <span class="ident">serde_json::from_str</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">prices_response</span>.<span class="ident">ok</span>, <span class="bool-val">true</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>deserialize_station_price_response() {
+        <span class="kw">let </span>data = std::fs::read_to_string(<span class="string">&quot;./test/data/prices.json&quot;</span>).unwrap();
+        <span class="kw">let </span>prices_response: PriceResponse = serde_json::from_str(<span class="kw-2">&amp;</span>data).unwrap();
+        <span class="macro">assert_eq!</span>(prices_response.ok, <span class="bool-val">true</span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>.<span class="ident">license</span>,
-            <span class="string">&quot;CC BY 4.0 -  https://creativecommons.tankerkoenig.de&quot;</span>
-        );
-        <span class="macro">assert_eq!</span>(<span class="ident">prices_response</span>.<span class="ident">data</span>, <span class="string">&quot;MTS-K&quot;</span>);
+            prices_response.license,
+            <span class="string">&quot;CC BY 4.0 -  https://creativecommons.tankerkoenig.de&quot;
+        </span>);
+        <span class="macro">assert_eq!</span>(prices_response.data, <span class="string">&quot;MTS-K&quot;</span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;60c0eefa-d2a8-4f5c-82cc-b5244ecae955&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">status</span>,
-            <span class="string">&quot;open&quot;</span>
-        );
+            prices_response
+                .prices
+                .get(<span class="string">&quot;60c0eefa-d2a8-4f5c-82cc-b5244ecae955&quot;</span>)
+                .unwrap()
+                .status,
+            <span class="string">&quot;open&quot;
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;60c0eefa-d2a8-4f5c-82cc-b5244ecae955&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">e5</span>,
-            <span class="prelude-val">None</span>
-        );
+            prices_response
+                .prices
+                .get(<span class="string">&quot;60c0eefa-d2a8-4f5c-82cc-b5244ecae955&quot;</span>)
+                .unwrap()
+                .e5,
+            <span class="prelude-val">None
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;60c0eefa-d2a8-4f5c-82cc-b5244ecae955&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">e10</span>,
-            <span class="prelude-val">None</span>
-        );
+            prices_response
+                .prices
+                .get(<span class="string">&quot;60c0eefa-d2a8-4f5c-82cc-b5244ecae955&quot;</span>)
+                .unwrap()
+                .e10,
+            <span class="prelude-val">None
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;60c0eefa-d2a8-4f5c-82cc-b5244ecae955&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">diesel</span>,
+            prices_response
+                .prices
+                .get(<span class="string">&quot;60c0eefa-d2a8-4f5c-82cc-b5244ecae955&quot;</span>)
+                .unwrap()
+                .diesel,
             <span class="prelude-val">Some</span>(<span class="number">1.189</span>)
         );
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;446bdcf5-9f75-47fc-9cfa-2c3d6fda1c3b&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">status</span>,
-            <span class="string">&quot;closed&quot;</span>
-        );
+            prices_response
+                .prices
+                .get(<span class="string">&quot;446bdcf5-9f75-47fc-9cfa-2c3d6fda1c3b&quot;</span>)
+                .unwrap()
+                .status,
+            <span class="string">&quot;closed&quot;
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;446bdcf5-9f75-47fc-9cfa-2c3d6fda1c3b&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">e5</span>,
-            <span class="prelude-val">None</span>
-        );
+            prices_response
+                .prices
+                .get(<span class="string">&quot;446bdcf5-9f75-47fc-9cfa-2c3d6fda1c3b&quot;</span>)
+                .unwrap()
+                .e5,
+            <span class="prelude-val">None
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;446bdcf5-9f75-47fc-9cfa-2c3d6fda1c3b&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">e10</span>,
-            <span class="prelude-val">None</span>
-        );
+            prices_response
+                .prices
+                .get(<span class="string">&quot;446bdcf5-9f75-47fc-9cfa-2c3d6fda1c3b&quot;</span>)
+                .unwrap()
+                .e10,
+            <span class="prelude-val">None
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;446bdcf5-9f75-47fc-9cfa-2c3d6fda1c3b&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">diesel</span>,
-            <span class="prelude-val">None</span>
-        );
+            prices_response
+                .prices
+                .get(<span class="string">&quot;446bdcf5-9f75-47fc-9cfa-2c3d6fda1c3b&quot;</span>)
+                .unwrap()
+                .diesel,
+            <span class="prelude-val">None
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;4429a7d9-fb2d-4c29-8cfe-2ca90323f9f8&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">status</span>,
-            <span class="string">&quot;open&quot;</span>
-        );
+            prices_response
+                .prices
+                .get(<span class="string">&quot;4429a7d9-fb2d-4c29-8cfe-2ca90323f9f8&quot;</span>)
+                .unwrap()
+                .status,
+            <span class="string">&quot;open&quot;
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;4429a7d9-fb2d-4c29-8cfe-2ca90323f9f8&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">e5</span>,
+            prices_response
+                .prices
+                .get(<span class="string">&quot;4429a7d9-fb2d-4c29-8cfe-2ca90323f9f8&quot;</span>)
+                .unwrap()
+                .e5,
             <span class="prelude-val">Some</span>(<span class="number">1.409</span>)
         );
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;4429a7d9-fb2d-4c29-8cfe-2ca90323f9f8&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">e10</span>,
+            prices_response
+                .prices
+                .get(<span class="string">&quot;4429a7d9-fb2d-4c29-8cfe-2ca90323f9f8&quot;</span>)
+                .unwrap()
+                .e10,
             <span class="prelude-val">Some</span>(<span class="number">1.389</span>)
         );
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;4429a7d9-fb2d-4c29-8cfe-2ca90323f9f8&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">diesel</span>,
+            prices_response
+                .prices
+                .get(<span class="string">&quot;4429a7d9-fb2d-4c29-8cfe-2ca90323f9f8&quot;</span>)
+                .unwrap()
+                .diesel,
             <span class="prelude-val">Some</span>(<span class="number">1.129</span>)
         );
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;44444444-4444-4444-4444-444444444444&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">status</span>,
-            <span class="string">&quot;no prices&quot;</span>
-        );
+            prices_response
+                .prices
+                .get(<span class="string">&quot;44444444-4444-4444-4444-444444444444&quot;</span>)
+                .unwrap()
+                .status,
+            <span class="string">&quot;no prices&quot;
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;44444444-4444-4444-4444-444444444444&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">e5</span>,
-            <span class="prelude-val">None</span>
-        );
+            prices_response
+                .prices
+                .get(<span class="string">&quot;44444444-4444-4444-4444-444444444444&quot;</span>)
+                .unwrap()
+                .e5,
+            <span class="prelude-val">None
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;44444444-4444-4444-4444-444444444444&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">e10</span>,
-            <span class="prelude-val">None</span>
-        );
+            prices_response
+                .prices
+                .get(<span class="string">&quot;44444444-4444-4444-4444-444444444444&quot;</span>)
+                .unwrap()
+                .e10,
+            <span class="prelude-val">None
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">prices_response</span>
-                .<span class="ident">prices</span>
-                .<span class="ident">get</span>(<span class="string">&quot;44444444-4444-4444-4444-444444444444&quot;</span>)
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">diesel</span>,
-            <span class="prelude-val">None</span>
-        );
+            prices_response
+                .prices
+                .get(<span class="string">&quot;44444444-4444-4444-4444-444444444444&quot;</span>)
+                .unwrap()
+                .diesel,
+            <span class="prelude-val">None
+        </span>);
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="tankerkoenig" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="tankerkoenig" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
