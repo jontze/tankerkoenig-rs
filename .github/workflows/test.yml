@@ -12,6 +12,7 @@ jobs:
   clippy:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         rust_version:
           - stable
