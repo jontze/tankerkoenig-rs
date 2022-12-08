@@ -1,4 +1,4 @@
-pub mod baseline {
+pub(crate) mod baseline {
     use crate::api;
     use crate::error::TankerkoenigError;
     use reqwest::header::{HeaderMap, HeaderValue, CONTENT_TYPE};
@@ -38,37 +38,33 @@ pub mod baseline {
     }
 }
 
-pub mod price {
-    use std::fmt::Display;
+pub(crate) mod price {
+    use std::{cell::RefCell, rc::Rc};
 
-    pub fn format_ids_string(ids: impl IntoIterator<Item = impl AsRef<str> + Display>) -> String {
-        let mut ids_string = String::from("");
-        for (index, id) in ids.into_iter().enumerate() {
-            ids_string = if index == 0 {
-                id.to_string()
-            } else {
-                format!("{},{}", ids_string, id)
-            };
-        }
-        ids_string
-    }
-
-    pub fn count_ids<I>(ids: I) -> (usize, Vec<I::Item>)
+    pub fn format_ids_string<S>(ids: &[Option<S>]) -> String
     where
-        I: IntoIterator,
-        I::Item: AsRef<str> + Display,
+        S: AsRef<str> + std::fmt::Display,
     {
-        let mut counted_ids = Vec::new();
-        let mut counter = 0_usize;
-        for item in ids.into_iter() {
-            counted_ids.push(item);
-            counter += 1;
-        }
-        (counter, counted_ids)
+        ids.iter()
+            .fold(
+                Rc::new(RefCell::new(String::from(""))),
+                |ids_string, potential_id| match potential_id {
+                    Some(id) => {
+                        ids_string.replace_with(|old_ids_string| {
+                            if old_ids_string.is_empty() {
+                                id.to_string()
+                            } else {
+                                format!("{old_ids_string},{id}")
+                            }
+                        });
+                        ids_string
+                    }
+                    None => ids_string,
+                },
+            )
+            .take()
     }
 }
-
-pub mod station {}
 
 #[cfg(test)]
 mod baseline_test {
@@ -101,19 +97,19 @@ mod price_test {
 
     #[test]
     fn should_create_string_of_ids() {
-        let ids = vec!["123", "456"];
-        let ids_string = format_ids_string(ids);
-        assert_eq!(ids_string, "123,456");
-    }
+        // Construct string of ids out of array with potential ids
+        let ids = vec![Some("123"), Some("456"), None, None, Some("789")];
+        let ids_string = format_ids_string(&ids);
+        assert_eq!(ids_string, "123,456,789");
 
-    #[test]
-    fn should_count_and_return_ids() {
-        let dummy_ids = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
-        let (count, counted_ids) = count_ids(dummy_ids);
-        assert_eq!(count, 11);
-        assert_eq!(counted_ids.len(), 11);
-        for (index, entry) in counted_ids.into_iter().enumerate() {
-            assert_eq!(entry, dummy_ids[index]);
-        }
+        // Empty if array only None
+        let ids: Vec<Option<String>> = vec![None, None];
+        let ids_string = format_ids_string(&ids);
+        assert_eq!(ids_string, "");
+
+        // Should have first available id as first part of the id string
+        let ids = vec![None, Some("123"), None, Some("456")];
+        let ids_string = format_ids_string(&ids);
+        assert_eq!(ids_string, "123,456");
     }
 }
