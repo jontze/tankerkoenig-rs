@@ -15,7 +15,7 @@ This crate is under development. Especially the response parsing needs some more
 
 ```toml
 [dependencies]
-tankerkoenig = "0.1.0-rc.2"
+tankerkoenig = "0.1.0-rc.3"
 # If you want to use the latest unreleased version:
 tankerkoenig = { git = "https://github.com/jontze/tankerkoenig-rs" }
 
