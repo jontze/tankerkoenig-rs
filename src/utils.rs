@@ -39,7 +39,9 @@ pub mod baseline {
 }
 
 pub mod price {
-    use std::fmt::Display;
+    use std::{fmt::Display, slice::ChunksExact};
+
+    const SLICE_SIZE: usize = 10;
 
     pub fn format_ids_string(ids: impl IntoIterator<Item = impl AsRef<str> + Display>) -> String {
         let mut ids_string = String::from("");
@@ -53,18 +55,31 @@ pub mod price {
         ids_string
     }
 
-    pub fn count_ids<I>(ids: I) -> (usize, Vec<I::Item>)
+    pub fn slice_station_ids<I>(station_ids: I) -> Vec<[Option<I::Item>; 10]>
     where
-        I: IntoIterator,
+        I: Iterator,
         I::Item: AsRef<str> + Display,
     {
-        let mut counted_ids = Vec::new();
-        let mut counter = 0_usize;
-        for item in ids.into_iter() {
-            counted_ids.push(item);
-            counter += 1;
+        let mut sliced_arrays: Vec<[Option<I::Item>; SLICE_SIZE]> = Vec::new();
+        let ids = station_ids.into_iter().collect::<Vec<I::Item>>();
+        let mut chunks: ChunksExact<I::Item> = ids.chunks_exact(SLICE_SIZE);
+        while let Some(chunk) = chunks.next() {
+            let mut array: [Option<&I::Item>; SLICE_SIZE] = Default::default();
+            for (index, id) in chunk.iter().enumerate() {
+                array[index] = Some(id);
+            }
+            sliced_arrays.push(array);
         }
-        (counter, counted_ids)
+        let remaining_entries = chunks.remainder();
+        if !remaining_entries.is_empty() {
+            let mut array: [Option<I::Item>; SLICE_SIZE] = Default::default();
+            for (index, id) in remaining_entries.iter().enumerate() {
+                let test = id.to_owned();
+                array[index] = Some(test);
+            }
+            sliced_arrays.push(array);
+        }
+        sliced_arrays
     }
 }
 
@@ -107,13 +122,48 @@ mod price_test {
     }
 
     #[test]
-    fn should_count_and_return_ids() {
-        let dummy_ids = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
-        let (count, counted_ids) = count_ids(dummy_ids);
-        assert_eq!(count, 11);
-        assert_eq!(counted_ids.len(), 11);
-        for (index, entry) in counted_ids.into_iter().enumerate() {
-            assert_eq!(entry, dummy_ids[index]);
-        }
+    fn should_transform_vector_into_vector_with_slices() {
+        let ids = vec![
+            "1".to_string(),
+            "2".to_string(),
+            "3".to_string(),
+            "4".to_string(),
+            "5".to_string(),
+            "6".to_string(),
+            "7".to_string(),
+            "8".to_string(),
+            "9".to_string(),
+            "10".to_string(),
+            "11".to_string(),
+        ];
+        let sliced = slice_station_ids(ids);
+        assert_eq!(sliced.len(), 2);
+        assert_eq!(sliced.get(0).unwrap().len(), 10);
+        assert_eq!(sliced.get(1).unwrap().len(), 10);
+    }
+
+    #[test]
+    fn should_transform_vector_into_vector_with_slices_with_remaining_entries() {
+        let ids = vec![
+            "1".to_string(),
+            "2".to_string(),
+            "3".to_string(),
+            "4".to_string(),
+            "5".to_string(),
+            "6".to_string(),
+            "7".to_string(),
+            "8".to_string(),
+            "9".to_string(),
+            "10".to_string(),
+            "11".to_string(),
+        ];
+        let sliced = slice_station_ids(ids);
+        let remaining_values: Vec<&Option<String>> = sliced
+            .get(1)
+            .unwrap()
+            .iter()
+            .filter(|value| value.is_some())
+            .collect();
+        assert_eq!(remaining_values.len(), 1);
     }
 }
