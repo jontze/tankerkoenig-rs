@@ -66,7 +66,7 @@ mod test {
     fn deserialize_station_price_response() {
         let data = std::fs::read_to_string("./test/data/prices.json").unwrap();
         let prices_response: PriceResponse = serde_json::from_str(&data).unwrap();
-        assert_eq!(prices_response.ok, true);
+        assert!(prices_response.ok);
         assert_eq!(
             prices_response.license,
             "CC BY 4.0 -  https://creativecommons.tankerkoenig.de"
