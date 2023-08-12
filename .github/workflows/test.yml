@@ -18,7 +18,7 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.58.1" # MSRV
+          - "1.68.0" # MSRV
     steps:
       - uses: actions/checkout@v2
       - name: Setup Rust with clippy
@@ -41,7 +41,7 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.58.1" # MSRV
+          - "1.68.0" # MSRV
     steps:
       - uses: actions/checkout@v2
       - name: Setup Rust with rustfmt
@@ -64,7 +64,7 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.58.1" # MSRV
+          - "1.68.0" # MSRV
     steps:
       - uses: actions/checkout@v2
       - name: Setup Rust with rustfmt
@@ -86,7 +86,7 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.58.1" # MSRV
+          - "1.68.0" # MSRV
     steps:
       - uses: actions/checkout@v2
       - name: Setup rust
