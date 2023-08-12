@@ -1,6 +1,5 @@
-#[derive(Error, Debug)]
-
 /// Contains all possible errors of the crate
+#[derive(Error, Debug)]
 pub enum TankerkoenigError {
     /// Something went wrong during fetching of
     /// the tankerkoenig api

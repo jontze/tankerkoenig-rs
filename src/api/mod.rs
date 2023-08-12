@@ -1,25 +1,15 @@
 //! Module that contains the main [Tankerkoenig] struct that gives access to
 //! the two child structs [PriceApi](price::PriceApi) and [StationApi](station::StationApi).
 
+mod client;
 pub mod price;
 pub mod station;
+mod url;
 
 use crate::error::TankerkoenigError;
-use crate::utils;
 use price::PriceApi;
 use station::StationApi;
-
-/// Settings struct that contains the api key, the current package version and the package name.
-/// The API key will be used as a query parameter in the requests and the package name and version
-/// will be used by default as useragent if no other useragent is provided.
-#[derive(Debug, Clone)]
-pub struct Settings {
-    api_key: String,
-    /// Crate version
-    pub package_version: &'static str,
-    /// Crate name
-    pub package_name: &'static str,
-}
+use std::sync::Arc;
 
 /// The main struct of the crate giving access to the station and price api of tankerkoenig.
 /// Create a new instance of the struct with your api key as parameter.
@@ -43,7 +33,7 @@ pub struct Tankerkoenig {
     pub price: PriceApi,
 }
 
-impl<'a> Tankerkoenig {
+impl Tankerkoenig {
     /// Creates a new instance of the Tankerkoenig struct by passing your api key as
     /// function parameter.
     ///
@@ -58,16 +48,16 @@ impl<'a> Tankerkoenig {
     ///   Ok(details)
     /// }
     /// ```
-    pub fn new(api_key: &'a str) -> Result<Self, TankerkoenigError> {
-        let settings = std::sync::Arc::new(Settings {
-            package_version: env!("CARGO_PKG_VERSION"),
-            package_name: env!("CARGO_PKG_NAME"),
-            api_key: String::from(api_key),
-        });
-        let client = utils::baseline::construct_client(None, &settings)?;
+    pub fn new<S>(api_key: S) -> Result<Self, TankerkoenigError>
+    where
+        S: AsRef<str>,
+    {
+        let api_key = api_key.as_ref().to_string();
+        let client: Arc<Box<dyn client::HttpClient>> =
+            Arc::new(Box::<client::HttpReqwestClientImpl>::default());
         Ok(Self {
-            station: StationApi::new(client.clone(), settings.clone()),
-            price: PriceApi::new(client, settings),
+            station: StationApi::new(client.clone(), api_key.clone()),
+            price: PriceApi::new(client, api_key),
         })
     }
 
@@ -87,19 +77,17 @@ impl<'a> Tankerkoenig {
     ///   Ok(details)
     /// }
     /// ```
-    pub fn new_with_useragent(
-        api_key: &'a str,
-        user_agent: &'a str,
-    ) -> Result<Self, TankerkoenigError> {
-        let settings = std::sync::Arc::new(Settings {
-            package_version: env!("CARGO_PKG_VERSION"),
-            package_name: env!("CARGO_PKG_NAME"),
-            api_key: String::from(api_key),
-        });
-        let client = utils::baseline::construct_client(Some(user_agent), &settings)?;
+    pub fn new_with_useragent<S>(api_key: S, user_agent: S) -> Result<Self, TankerkoenigError>
+    where
+        S: AsRef<str>,
+    {
+        let api_key = api_key.as_ref().to_string();
+        let client: Arc<Box<dyn client::HttpClient>> = Arc::new(Box::new(
+            client::HttpReqwestClientImpl::new(user_agent.as_ref())?,
+        ));
         Ok(Self {
-            station: StationApi::new(client.clone(), settings.clone()),
-            price: PriceApi::new(client, settings),
+            station: StationApi::new(client.clone(), api_key.clone()),
+            price: PriceApi::new(client, api_key),
         })
     }
 }
