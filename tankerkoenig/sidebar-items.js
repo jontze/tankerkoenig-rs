@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":[["Error","Contains all possible errors of the crate"]],"mod":[["api","Module that contains the main [Tankerkoenig] struct that gives access to the two child structs PriceApi and StationApi."],["models","Module contains Structs that describe all possible responses of the Prices and Station api."]]};
+window.SIDEBAR_ITEMS = {"enum":["Error"],"mod":["api","models"]};

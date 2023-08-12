@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":[["PriceApi","Struct that holds the current reqwest client of the library and gives access to the price api of the tankerkoenig API."]]};
+window.SIDEBAR_ITEMS = {"struct":["PriceApi"]};
