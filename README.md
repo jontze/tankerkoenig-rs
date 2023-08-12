@@ -1,9 +1,10 @@
 # tankerkoenig-rs
 
 [![GitHub license](https://img.shields.io/github/license/jontze/tankerkoenig-rs)](https://github.com/jontze/tankerkoenig-rs/blob/main/LICENSE)
-![crates.io](https://img.shields.io/crates/v/tankerkoenig.svg)
+![Crates.io](https://img.shields.io/crates/v/tankerkoenig?link=https%3A%2F%2Fcrates.io%2Fcrates%2Ftankerkoenig)
 ![docs.rs](https://img.shields.io/docsrs/tankerkoenig)
 [![Main](https://github.com/jontze/tankerkoenig-rs/actions/workflows/main.yml/badge.svg)](https://github.com/jontze/tankerkoenig-rs/actions/workflows/main.yml)
+[![codecov](https://codecov.io/gh/jontze/tankerkoenig-rs/branch/main/graph/badge.svg?token=0EN6ODWIDC)](https://codecov.io/gh/jontze/tankerkoenig-rs)
 
 API wrapper for the [tankerkoenig-api](https://creativecommons.tankerkoenig.de/) written in rust.
 
