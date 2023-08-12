@@ -1,3 +1,4 @@
+---
 name: Release
 on:
   release:
@@ -8,6 +9,7 @@ jobs:
   release_test:
     name: Test
     uses: ./.github/workflows/test.yml
+
   cargo_publish:
     name: Publish
     needs:

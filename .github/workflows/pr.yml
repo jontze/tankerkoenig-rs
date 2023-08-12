@@ -1,3 +1,4 @@
+---
 name: PR Analysis
 on:
   pull_request:

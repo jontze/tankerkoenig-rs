@@ -1,3 +1,4 @@
+---
 name: Main
 on:
   push:
@@ -8,16 +9,15 @@ jobs:
   test:
     name: Test
     uses: ./.github/workflows/test.yml
+
   upload_docs_ghp:
+    name: Upload Docs to GitHub Pages
     needs: [test]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Build docs
-        uses: actions-rs/cargo@v1
-        with:
-          command: doc
-          args: --no-deps
+        run: cargo doc --no-deps
       - name: Remove possible old documentation
         run: rm -rf ./docs
       - name: Create index html handling subdirectory
