@@ -12,3 +12,10 @@ jobs:
     uses: ./.github/workflows/test.yml
     with:
       build_test: false
+
+  coverage:
+    name: Coverage Report
+    needs:
+      - test
+    uses: ./.github/workflows/coverage.yml
+    secrets: inherit
