@@ -1,3 +1,5 @@
+---
+name: Cargo Publish
 on:
   workflow_call:
     inputs:

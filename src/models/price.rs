@@ -27,24 +27,14 @@ pub struct StationPrices {
     /// Station open or closed
     pub status: String,
     /// Price for E5
-    #[serde(deserialize_with = "de_from_bool_or_number", default = "default_fuel")]
+    #[serde(deserialize_with = "de_from_bool_or_number", default)]
     pub e5: Option<f64>,
     /// Price for E10
-    #[serde(deserialize_with = "de_from_bool_or_number", default = "default_fuel")]
+    #[serde(deserialize_with = "de_from_bool_or_number", default)]
     pub e10: Option<f64>,
     /// Price for diesel
-    #[serde(deserialize_with = "de_from_bool_or_number", default = "default_fuel")]
+    #[serde(deserialize_with = "de_from_bool_or_number", default)]
     pub diesel: Option<f64>,
-}
-
-/// This function should just return always null as fallback.
-/// This is required as the custom deserialization can't handle missing values.
-fn default_fuel() -> Option<f64> {
-    if 1 < 0 {
-        Some(1_f64)
-    } else {
-        None
-    }
 }
 
 fn de_from_bool_or_number<'de, D>(deserializer: D) -> Result<Option<f64>, D::Error>
@@ -66,7 +56,7 @@ mod test {
     fn deserialize_station_price_response() {
         let data = std::fs::read_to_string("./test/data/prices.json").unwrap();
         let prices_response: PriceResponse = serde_json::from_str(&data).unwrap();
-        assert_eq!(prices_response.ok, true);
+        assert!(prices_response.ok);
         assert_eq!(
             prices_response.license,
             "CC BY 4.0 -  https://creativecommons.tankerkoenig.de"
@@ -196,6 +186,38 @@ mod test {
             prices_response
                 .prices
                 .get("44444444-4444-4444-4444-444444444444")
+                .unwrap()
+                .diesel,
+            None
+        );
+        assert_eq!(
+            prices_response
+                .prices
+                .get("55555555-4444-4444-4444-444444444444")
+                .unwrap()
+                .status,
+            "no prices"
+        );
+        assert_eq!(
+            prices_response
+                .prices
+                .get("55555555-4444-4444-4444-444444444444")
+                .unwrap()
+                .e5,
+            None
+        );
+        assert_eq!(
+            prices_response
+                .prices
+                .get("55555555-4444-4444-4444-444444444444")
+                .unwrap()
+                .e10,
+            None
+        );
+        assert_eq!(
+            prices_response
+                .prices
+                .get("55555555-4444-4444-4444-444444444444")
                 .unwrap()
                 .diesel,
             None

@@ -178,7 +178,7 @@ mod test {
         let data = std::fs::read_to_string("./test/data/list.json").unwrap();
         let station_response: AreaFuelResponse = serde_json::from_str(&data).unwrap();
         let station = station_response.stations.get(0).unwrap();
-        assert_eq!(station_response.ok, true);
+        assert!(station_response.ok);
         assert_eq!(
             station_response.license,
             "CC BY 4.0 -  https://creativecommons.tankerkoenig.de"
@@ -194,7 +194,7 @@ mod test {
         assert_eq!(station.lng, 13.440946);
         assert_eq!(station.dist, 0_f64);
         assert_eq!(station.price, Some(1.649));
-        assert_eq!(station.is_open, true);
+        assert!(station.is_open);
         assert_eq!(station.house_number, Some(String::from("2")));
         assert_eq!(station.post_code, 10407);
     }
@@ -204,7 +204,7 @@ mod test {
         let data = std::fs::read_to_string("./test/data/list_near.json").unwrap();
         let station_response: AreaNearResponse = serde_json::from_str(&data).unwrap();
         let station = station_response.stations.get(0).unwrap();
-        assert_eq!(station_response.ok, true);
+        assert!(station_response.ok);
         assert_eq!(
             station_response.license,
             "CC BY 4.0 -  https://creativecommons.tankerkoenig.de"
@@ -222,7 +222,7 @@ mod test {
         assert_eq!(station.diesel, Some(1.489));
         assert_eq!(station.e5, Some(1.649));
         assert_eq!(station.e10, Some(1.589));
-        assert_eq!(station.is_open, true);
+        assert!(station.is_open);
         assert_eq!(station.house_number, Some(String::from("2")));
         assert_eq!(station.post_code, 10407);
     }
@@ -236,7 +236,7 @@ mod test {
             .opening_times
             .get(0)
             .unwrap();
-        assert_eq!(station_detail_response.ok, true);
+        assert!(station_detail_response.ok);
         assert_eq!(
             station_detail_response.license,
             "CC BY 4.0 -  https://creativecommons.tankerkoenig.de"
@@ -256,8 +256,8 @@ mod test {
         );
         assert_eq!(station_detail_response.station.post_code, 84152);
         assert_eq!(station_detail_response.station.place, "MENGKOFEN");
-        assert_eq!(station_detail_response.station.whole_day, false);
-        assert_eq!(station_detail_response.station.is_open, false);
+        assert!(!station_detail_response.station.whole_day);
+        assert!(!station_detail_response.station.is_open);
         assert_eq!(station_detail_response.station.e5, Some(1.379));
         assert_eq!(station_detail_response.station.e10, Some(1.359));
         assert_eq!(station_detail_response.station.diesel, Some(1.169));

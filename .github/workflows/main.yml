@@ -1,3 +1,4 @@
+---
 name: Main
 on:
   push:
@@ -8,16 +9,22 @@ jobs:
   test:
     name: Test
     uses: ./.github/workflows/test.yml
+
+  coverage:
+    name: Coverage Report
+    needs:
+      - test
+    uses: ./.github/workflows/coverage.yml
+    secrets: inherit
+
   upload_docs_ghp:
-    needs: [test]
+    name: Upload Docs to GitHub Pages
+    needs: [test, coverage]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Build docs
-        uses: actions-rs/cargo@v1
-        with:
-          command: doc
-          args: --no-deps
+        run: cargo doc --no-deps
       - name: Remove possible old documentation
         run: rm -rf ./docs
       - name: Create index html handling subdirectory
