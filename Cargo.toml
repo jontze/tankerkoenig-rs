@@ -19,6 +19,7 @@ exclude = [
 [dependencies]
 thiserror = "1.0.30"
 serde_json = "1.0.72"
+async-trait = "0.1.72"
 
 [dependencies.serde]
 version = "1.0.131"
