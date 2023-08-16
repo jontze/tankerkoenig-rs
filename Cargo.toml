@@ -2,7 +2,7 @@
 name = "tankerkoenig"
 author = "Jontze <dev@jontze.com>"
 description = "API wrapper for the tankerkoenig api"
-version = "0.1.0-rc.3"
+version = "0.1.0-rc.4"
 edition = "2021"
 rust-version = "1.68.0"
 license = "MIT"
