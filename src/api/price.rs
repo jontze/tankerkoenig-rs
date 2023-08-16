@@ -47,11 +47,9 @@ impl PriceApi {
 
     /// Fetch the prices of all fuel types of the given station ids (up to 10 at once).
     ///
-    /// ## Further Explanation
-    /// You can only fetch 10 stations at once. If you want to fetch more than 10 stations,
+    /// You can only fetch prices for 10 stations at once. If you want to fetch more than 10 stations,
     /// you have to call this function multiple times. This is due to a limitation of the
-    /// [tankerkoenig API](https://creativecommons.tankerkoenig.de/).
-    /// Read more about that on their [website](https://creativecommons.tankerkoenig.de/)
+    /// [tankerkoenig API](https://creativecommons.tankerkoenig.de/). Use the helper [`macro@chunk_into_option_arrays`](crate::chunk_into_option_arrays) to make this easier.
     ///
     /// ## Example
     /// ```
@@ -64,6 +62,27 @@ impl PriceApi {
     ///    Ok(prices)
     /// }
     /// ```
+    ///
+    /// ## Example with [`macro@chunk_into_option_arrays`](crate::chunk_into_option_arrays)
+    /// ```
+    /// use tankerkoenig::Tankerkoenig;
+    /// use tankerkoenig::models;
+    /// use tankerkoenig::chunk_into_option_arrays;
+    ///
+    /// async fn request_station_prices() -> Result<Vec<models::PriceResponse>, tankerkoenig::Error> {
+    ///   let tanker = Tankerkoenig::new("your-api-key")?;
+    ///   let station_ids = ["id-1", "id-2", "id-3", "id-4", "id-5", "id-6", "id-7"];
+    ///
+    ///   let mut all_prices = Vec::new();
+    ///   for chunk in chunk_into_option_arrays!(station_ids) {
+    ///     let prices = tanker.price.fetch(&chunk).await?;
+    ///    // Remember to wait between the requests to not get blocked by the API
+    ///     all_prices.push(prices);
+    ///   }
+    ///   Ok(all_prices)
+    /// }
+    /// ```
+    ///  
     pub async fn fetch<S>(
         &self,
         ids: &[Option<S>; MAX_REQUEST_STATION_IDS],
@@ -162,22 +181,11 @@ mod test {
                 Pin::from(Box::new(ready(result)))
             });
 
+        let ids = ["456", "789"];
+        let transformed = crate::chunk_into_option_arrays!(ids);
+
         let api = PriceApi::new(Arc::new(Box::new(mock_client)), api_key);
-        let res = api
-            .fetch(&[
-                Some("456"),
-                Some("789"),
-                None,
-                None,
-                None,
-                None,
-                None,
-                None,
-                None,
-                None,
-            ])
-            .await
-            .unwrap();
+        let res = api.fetch(&transformed.get(0).unwrap()).await.unwrap();
 
         let station_prices: models::price::PriceResponse =
             serde_json::from_str(&data_string).unwrap();

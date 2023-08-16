@@ -11,7 +11,7 @@ use price::PriceApi;
 use station::StationApi;
 use std::sync::Arc;
 
-/// The main struct of the crate giving access to the station and price api of tankerkoenig.
+/// The main struct of the crate giving access to the [`StationApi`] and [`PriceApi`] of tankerkoenig.
 /// Create a new instance of the struct with your api key as parameter.
 ///
 /// ## Example
