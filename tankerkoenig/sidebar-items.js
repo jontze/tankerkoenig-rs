@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["Error"],"mod":["api","models"]};
+window.SIDEBAR_ITEMS = {"enum":["Error"],"macro":["chunk_into_option_arrays"],"mod":["api","models"]};

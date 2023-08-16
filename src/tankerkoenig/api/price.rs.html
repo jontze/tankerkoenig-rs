@@ -198,6 +198,14 @@
 <a href="#198" id="198">198</a>
 <a href="#199" id="199">199</a>
 <a href="#200" id="200">200</a>
+<a href="#201" id="201">201</a>
+<a href="#202" id="202">202</a>
+<a href="#203" id="203">203</a>
+<a href="#204" id="204">204</a>
+<a href="#205" id="205">205</a>
+<a href="#206" id="206">206</a>
+<a href="#207" id="207">207</a>
+<a href="#208" id="208">208</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Price module that gives access to the [PriceApi] struct
 
 </span><span class="kw">use crate</span>::{
@@ -247,11 +255,9 @@
 
     <span class="doccomment">/// Fetch the prices of all fuel types of the given station ids (up to 10 at once).
     ///
-    /// ## Further Explanation
-    /// You can only fetch 10 stations at once. If you want to fetch more than 10 stations,
+    /// You can only fetch prices for 10 stations at once. If you want to fetch more than 10 stations,
     /// you have to call this function multiple times. This is due to a limitation of the
-    /// [tankerkoenig API](https://creativecommons.tankerkoenig.de/).
-    /// Read more about that on their [website](https://creativecommons.tankerkoenig.de/)
+    /// [tankerkoenig API](https://creativecommons.tankerkoenig.de/). Use the helper [`macro@chunk_into_option_arrays`](crate::chunk_into_option_arrays) to make this easier.
     ///
     /// ## Example
     /// ```
@@ -264,6 +270,27 @@
     ///    Ok(prices)
     /// }
     /// ```
+    ///
+    /// ## Example with [`macro@chunk_into_option_arrays`](crate::chunk_into_option_arrays)
+    /// ```
+    /// use tankerkoenig::Tankerkoenig;
+    /// use tankerkoenig::models;
+    /// use tankerkoenig::chunk_into_option_arrays;
+    ///
+    /// async fn request_station_prices() -&gt; Result&lt;Vec&lt;models::PriceResponse&gt;, tankerkoenig::Error&gt; {
+    ///   let tanker = Tankerkoenig::new(&quot;your-api-key&quot;)?;
+    ///   let station_ids = [&quot;id-1&quot;, &quot;id-2&quot;, &quot;id-3&quot;, &quot;id-4&quot;, &quot;id-5&quot;, &quot;id-6&quot;, &quot;id-7&quot;];
+    ///
+    ///   let mut all_prices = Vec::new();
+    ///   for chunk in chunk_into_option_arrays!(station_ids) {
+    ///     let prices = tanker.price.fetch(&amp;chunk).await?;
+    ///    // Remember to wait between the requests to not get blocked by the API
+    ///     all_prices.push(prices);
+    ///   }
+    ///   Ok(all_prices)
+    /// }
+    /// ```
+    ///  
     </span><span class="kw">pub async fn </span>fetch&lt;S&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         ids: <span class="kw-2">&amp;</span>[<span class="prelude-ty">Option</span>&lt;S&gt;; MAX_REQUEST_STATION_IDS],
@@ -362,22 +389,11 @@
                 Pin::from(Box::new(ready(result)))
             });
 
+        <span class="kw">let </span>ids = [<span class="string">&quot;456&quot;</span>, <span class="string">&quot;789&quot;</span>];
+        <span class="kw">let </span>transformed = <span class="macro">crate::chunk_into_option_arrays!</span>(ids);
+
         <span class="kw">let </span>api = PriceApi::new(Arc::new(Box::new(mock_client)), api_key);
-        <span class="kw">let </span>res = api
-            .fetch(<span class="kw-2">&amp;</span>[
-                <span class="prelude-val">Some</span>(<span class="string">&quot;456&quot;</span>),
-                <span class="prelude-val">Some</span>(<span class="string">&quot;789&quot;</span>),
-                <span class="prelude-val">None</span>,
-                <span class="prelude-val">None</span>,
-                <span class="prelude-val">None</span>,
-                <span class="prelude-val">None</span>,
-                <span class="prelude-val">None</span>,
-                <span class="prelude-val">None</span>,
-                <span class="prelude-val">None</span>,
-                <span class="prelude-val">None</span>,
-            ])
-            .<span class="kw">await
-            </span>.unwrap();
+        <span class="kw">let </span>res = api.fetch(<span class="kw-2">&amp;</span>transformed.get(<span class="number">0</span>).unwrap()).<span class="kw">await</span>.unwrap();
 
         <span class="kw">let </span>station_prices: models::price::PriceResponse =
             serde_json::from_str(<span class="kw-2">&amp;</span>data_string).unwrap();

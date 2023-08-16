@@ -9,16 +9,14 @@ the tankerkoenig API.</p>
    <span class="kw">let </span>prices = tanker.price.fetch(<span class="kw-2">&amp;</span>[<span class="prelude-val">Some</span>(<span class="string">&quot;station-id-1&quot;</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;station-id-2&quot;</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;station-id-3&quot;</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;station-id-4&quot;</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;station-id-5&quot;</span>), <span class="prelude-val">None</span>, <span class="prelude-val">None</span>, <span class="prelude-val">None</span>, <span class="prelude-val">None</span>, <span class="prelude-val">None</span>]).<span class="kw">await</span><span class="question-mark">?</span>;
    <span class="prelude-val">Ok</span>(prices)
 }</code></pre></div>
-</div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-PriceApi" class="impl"><a class="srclink rightside" href="../../../src/tankerkoenig/api/price.rs.html#43-108">source</a><a href="#impl-PriceApi" class="anchor">§</a><h3 class="code-header">impl <a class="struct" href="struct.PriceApi.html" title="struct tankerkoenig::api::price::PriceApi">PriceApi</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.fetch" class="method"><a class="srclink rightside" href="../../../src/tankerkoenig/api/price.rs.html#67-80">source</a><h4 class="code-header">pub async fn <a href="#method.fetch" class="fn">fetch</a>&lt;S&gt;(
+</div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-PriceApi" class="impl"><a class="srclink rightside" href="../../../src/tankerkoenig/api/price.rs.html#43-127">source</a><a href="#impl-PriceApi" class="anchor">§</a><h3 class="code-header">impl <a class="struct" href="struct.PriceApi.html" title="struct tankerkoenig::api::price::PriceApi">PriceApi</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.fetch" class="method"><a class="srclink rightside" href="../../../src/tankerkoenig/api/price.rs.html#86-99">source</a><h4 class="code-header">pub async fn <a href="#method.fetch" class="fn">fetch</a>&lt;S&gt;(
     &amp;self,
     ids: &amp;[<a class="enum" href="https://doc.rust-lang.org/1.71.1/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;S&gt;; <a class="primitive" href="https://doc.rust-lang.org/1.71.1/std/primitive.array.html">10</a>]
 ) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.71.1/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../../models/price/struct.PriceResponse.html" title="struct tankerkoenig::models::price::PriceResponse">PriceResponse</a>, <a class="enum" href="../../enum.Error.html" title="enum tankerkoenig::Error">TankerkoenigError</a>&gt;<span class="where fmt-newline">where
     S: <a class="trait" href="https://doc.rust-lang.org/1.71.1/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.71.1/std/primitive.str.html">str</a>&gt; + <a class="trait" href="https://doc.rust-lang.org/1.71.1/core/fmt/trait.Display.html" title="trait core::fmt::Display">Display</a>,</span></h4></section></summary><div class="docblock"><p>Fetch the prices of all fuel types of the given station ids (up to 10 at once).</p>
-<h6 id="further-explanation"><a href="#further-explanation">Further Explanation</a></h6>
-<p>You can only fetch 10 stations at once. If you want to fetch more than 10 stations,
+<p>You can only fetch prices for 10 stations at once. If you want to fetch more than 10 stations,
 you have to call this function multiple times. This is due to a limitation of the
-<a href="https://creativecommons.tankerkoenig.de/">tankerkoenig API</a>.
-Read more about that on their <a href="https://creativecommons.tankerkoenig.de/">website</a></p>
+<a href="https://creativecommons.tankerkoenig.de/">tankerkoenig API</a>. Use the helper <a href="../../macro.chunk_into_option_arrays.html" title="macro tankerkoenig::chunk_into_option_arrays"><code>macro@chunk_into_option_arrays</code></a> to make this easier.</p>
 <h6 id="example-1"><a href="#example-1">Example</a></h6>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>tankerkoenig::Tankerkoenig;
 <span class="kw">use </span>tankerkoenig::models;
@@ -28,7 +26,24 @@ Read more about that on their <a href="https://creativecommons.tankerkoenig.de/"
    <span class="kw">let </span>prices = tanker.price.fetch(<span class="kw-2">&amp;</span>[<span class="prelude-val">Some</span>(<span class="string">&quot;station-id-1&quot;</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;station-id-2&quot;</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;station-id-3&quot;</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;station-id-4&quot;</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;station-id-5&quot;</span>), <span class="prelude-val">None</span>, <span class="prelude-val">None</span>, <span class="prelude-val">None</span>, <span class="prelude-val">None</span>, <span class="prelude-val">None</span>]).<span class="kw">await</span><span class="question-mark">?</span>;
    <span class="prelude-val">Ok</span>(prices)
 }</code></pre></div>
-</div></details><details class="toggle method-toggle" open><summary><section id="method.fetch_one" class="method"><a class="srclink rightside" href="../../../src/tankerkoenig/api/price.rs.html#95-107">source</a><h4 class="code-header">pub async fn <a href="#method.fetch_one" class="fn">fetch_one</a>&lt;S&gt;(
+<h6 id="example-with-macrochunk_into_option_arrays"><a href="#example-with-macrochunk_into_option_arrays">Example with <code>macro@chunk_into_option_arrays</code></a></h6>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>tankerkoenig::Tankerkoenig;
+<span class="kw">use </span>tankerkoenig::models;
+<span class="kw">use </span>tankerkoenig::chunk_into_option_arrays;
+
+<span class="kw">async fn </span>request_station_prices() -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;models::PriceResponse&gt;, tankerkoenig::Error&gt; {
+  <span class="kw">let </span>tanker = Tankerkoenig::new(<span class="string">&quot;your-api-key&quot;</span>)<span class="question-mark">?</span>;
+  <span class="kw">let </span>station_ids = [<span class="string">&quot;id-1&quot;</span>, <span class="string">&quot;id-2&quot;</span>, <span class="string">&quot;id-3&quot;</span>, <span class="string">&quot;id-4&quot;</span>, <span class="string">&quot;id-5&quot;</span>, <span class="string">&quot;id-6&quot;</span>, <span class="string">&quot;id-7&quot;</span>];
+
+  <span class="kw">let </span><span class="kw-2">mut </span>all_prices = Vec::new();
+  <span class="kw">for </span>chunk <span class="kw">in </span><span class="macro">chunk_into_option_arrays!</span>(station_ids) {
+    <span class="kw">let </span>prices = tanker.price.fetch(<span class="kw-2">&amp;</span>chunk).<span class="kw">await</span><span class="question-mark">?</span>;
+   <span class="comment">// Remember to wait between the requests to not get blocked by the API
+    </span>all_prices.push(prices);
+  }
+  <span class="prelude-val">Ok</span>(all_prices)
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.fetch_one" class="method"><a class="srclink rightside" href="../../../src/tankerkoenig/api/price.rs.html#114-126">source</a><h4 class="code-header">pub async fn <a href="#method.fetch_one" class="fn">fetch_one</a>&lt;S&gt;(
     &amp;self,
     id: S
 ) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.71.1/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../../models/price/struct.PriceResponse.html" title="struct tankerkoenig::models::price::PriceResponse">PriceResponse</a>, <a class="enum" href="../../enum.Error.html" title="enum tankerkoenig::Error">TankerkoenigError</a>&gt;<span class="where fmt-newline">where
