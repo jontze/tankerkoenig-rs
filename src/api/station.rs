@@ -119,7 +119,7 @@ impl StationApi {
         id: S,
     ) -> Result<models::station::DetailsResponse, error::TankerkoenigError> {
         let id = id.as_ref();
-        let mut url = self.base_url(&self.api_key, Some("json/list.php"))?;
+        let mut url = self.base_url(&self.api_key, Some("json/detail.php"))?;
         url.query_pairs_mut().append_pair("id", id);
         let res_body = self.client.get(&url).await?;
         serde_json::from_str::<models::station::DetailsResponse>(&res_body)
@@ -208,7 +208,7 @@ mod test {
             .expect_get()
             .times(1)
             .with(eq(reqwest::Url::parse(
-                "https://creativecommons.tankerkoenig.de/json/list.php?apikey=123&id=123",
+                "https://creativecommons.tankerkoenig.de/json/detail.php?apikey=123&id=123",
             )
             .unwrap()))
             .returning(move |_| {
