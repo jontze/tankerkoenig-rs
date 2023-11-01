@@ -41,5 +41,5 @@ wiremock = "0.5.19"
 
 [dev-dependencies.tokio]
 version = "1.19.2"
-features = ["rt", "macros"]
+features = ["full"]
 
