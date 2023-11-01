@@ -359,7 +359,7 @@
         id: S,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;models::station::DetailsResponse, error::TankerkoenigError&gt; {
         <span class="kw">let </span>id = id.as_ref();
-        <span class="kw">let </span><span class="kw-2">mut </span>url = <span class="self">self</span>.base_url(<span class="kw-2">&amp;</span><span class="self">self</span>.api_key, <span class="prelude-val">Some</span>(<span class="string">&quot;json/list.php&quot;</span>))<span class="question-mark">?</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>url = <span class="self">self</span>.base_url(<span class="kw-2">&amp;</span><span class="self">self</span>.api_key, <span class="prelude-val">Some</span>(<span class="string">&quot;json/detail.php&quot;</span>))<span class="question-mark">?</span>;
         url.query_pairs_mut().append_pair(<span class="string">&quot;id&quot;</span>, id);
         <span class="kw">let </span>res_body = <span class="self">self</span>.client.get(<span class="kw-2">&amp;</span>url).<span class="kw">await</span><span class="question-mark">?</span>;
         serde_json::from_str::&lt;models::station::DetailsResponse&gt;(<span class="kw-2">&amp;</span>res_body)
@@ -448,7 +448,7 @@
             .expect_get()
             .times(<span class="number">1</span>)
             .with(eq(reqwest::Url::parse(
-                <span class="string">&quot;https://creativecommons.tankerkoenig.de/json/list.php?apikey=123&amp;id=123&quot;</span>,
+                <span class="string">&quot;https://creativecommons.tankerkoenig.de/json/detail.php?apikey=123&amp;id=123&quot;</span>,
             )
             .unwrap()))
             .returning(<span class="kw">move </span>|<span class="kw">_</span>| {
