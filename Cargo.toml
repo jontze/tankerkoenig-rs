@@ -36,7 +36,7 @@ features = ["rustls-tls"]
 
 [dev-dependencies]
 futures = "0.3.28"
-mockall = "0.11.4"
+mockall = "0.12.1"
 wiremock = "0.5.19"
 
 [dev-dependencies.tokio]
