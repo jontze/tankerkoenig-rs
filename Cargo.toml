@@ -26,7 +26,7 @@ version = "1.0.131"
 features = ["derive"]
 
 [dependencies.strum]
-version = "0.25"
+version = "0.26"
 features = ["derive"]
 
 [dependencies.reqwest]
