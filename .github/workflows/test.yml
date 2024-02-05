@@ -28,7 +28,7 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.69.0" # MSRV
+          - "1.70.0" # MSRV
     steps:
       - uses: actions/checkout@v4
       - name: Setup Cache for Rust
@@ -50,7 +50,7 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.69.0" # MSRV
+          - "1.70.0" # MSRV
     steps:
       - uses: actions/checkout@v4
       - name: Setup Rust
@@ -70,7 +70,7 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.69.0" # MSRV
+          - "1.70.0" # MSRV
     steps:
       - uses: actions/checkout@v4
       - name: Setup Cache for Rust
@@ -92,7 +92,7 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.69.0" # MSRV
+          - "1.70.0" # MSRV
     steps:
       - uses: actions/checkout@v4
       - name: Setup Cache for Rust
