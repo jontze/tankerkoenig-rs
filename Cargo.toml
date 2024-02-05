@@ -2,9 +2,9 @@
 name = "tankerkoenig"
 author = "Jontze <dev@jontze.com>"
 description = "API wrapper for the tankerkoenig api"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
-rust-version = "1.68.0"
+rust-version = "1.70.0"
 license = "MIT"
 homepage = "https://github.com/jontze/tankerkoenig-rs"
 repository = "https://github.com/jontze/tankerkoenig-rs"
@@ -14,6 +14,7 @@ keywords = ["api-wrapper", "tankerkoenig", "api", "fuel"]
 categories = ["api-bindings"]
 exclude = [
     ".github/",
+    "test"
 ]
 
 [dependencies]
@@ -36,7 +37,7 @@ features = ["rustls-tls"]
 
 [dev-dependencies]
 futures = "0.3.28"
-mockall = "0.11.4"
+mockall = "0.12.1"
 wiremock = "0.5.19"
 
 [dev-dependencies.tokio]
