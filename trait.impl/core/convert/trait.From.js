@@ -1,3 +1,3 @@
 (function() {var implementors = {
-"tankerkoenig":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.76.0/core/convert/trait.From.html\" title=\"trait core::convert::From\">From</a>&lt;InvalidHeaderValue&gt; for <a class=\"enum\" href=\"tankerkoenig/enum.Error.html\" title=\"enum tankerkoenig::Error\">TankerkoenigError</a>"]]
+"tankerkoenig":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.81.0/core/convert/trait.From.html\" title=\"trait core::convert::From\">From</a>&lt;InvalidHeaderValue&gt; for <a class=\"enum\" href=\"tankerkoenig/enum.Error.html\" title=\"enum tankerkoenig::Error\">TankerkoenigError</a>"]]
 };if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
