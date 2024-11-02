@@ -4,7 +4,7 @@ author = "Jontze <dev@jontze.com>"
 description = "API wrapper for the tankerkoenig api"
 version = "0.2.0"
 edition = "2021"
-rust-version = "1.70.0"
+rust-version = "1.75.0"
 license = "MIT"
 homepage = "https://github.com/jontze/tankerkoenig-rs"
 repository = "https://github.com/jontze/tankerkoenig-rs"
@@ -18,29 +18,29 @@ exclude = [
 ]
 
 [dependencies]
-thiserror = "1.0.30"
-serde_json = "1.0.72"
-async-trait = "0.1.72"
+thiserror = "1.0.66"
+serde_json = "1.0.132"
+async-trait = "0.1.83"
 
 [dependencies.serde]
-version = "1.0.131"
+version = "1.0.214"
 features = ["derive"]
 
 [dependencies.strum]
-version = "0.26"
+version = "0.26.3"
 features = ["derive"]
 
 [dependencies.reqwest]
-version = "0.12.0" 
+version = "0.12.9"
 default-features = false
 features = ["rustls-tls"]
 
 [dev-dependencies]
-futures = "0.3.28"
-mockall = "0.12.1"
-wiremock = "0.6.0"
+futures = "0.3.31"
+mockall = "0.13.0"
+wiremock = "0.6.2"
 
 [dev-dependencies.tokio]
-version = "1.19.2"
+version = "1.41.0"
 features = ["full"]
 
